@@ -1,0 +1,15 @@
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block  content %}
+    <h1>Publication creation</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Create" width="200" height="800"/>
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('publication_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

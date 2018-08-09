@@ -1,0 +1,50 @@
+<?php
+
+namespace SocialPro\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ReservationTrajet
+ *
+ * @ORM\Table(name="reservation_trajet", indexes={@ORM\Index(name="IDX_E21C95B7D6C1C61", columns={"id_trajet"}), @ORM\Index(name="IDX_E21C95B76B3CA4B", columns={"id_user"})})
+ * @ORM\Entity
+ */
+class ReservationTrajet
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_reservation", type="datetime", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $dateReservation;
+
+    /**
+     * @var \Trajet
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Trajet")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_trajet", referencedColumnName="id_trajet")
+     * })
+     */
+    private $idTrajet;
+
+    /**
+     * @var \User
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id")
+     * })
+     */
+    private $idUser;
+
+
+}
+

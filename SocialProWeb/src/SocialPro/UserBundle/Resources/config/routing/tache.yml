@@ -1,0 +1,24 @@
+tache_index:
+    path:     /
+    defaults: { _controller: "SocialProUserBundle:Tache:index" }
+    methods:  GET
+
+tache_show:
+    path:     /{idTache}/show
+    defaults: { _controller: "SocialProUserBundle:Tache:show" }
+    methods:  GET
+
+tache_new:
+    path:     /new
+    defaults: { _controller: "SocialProUserBundle:Tache:new" }
+    methods:  [GET, POST]
+
+tache_edit:
+    path:     /{idTache}/edit
+    defaults: { _controller: "SocialProUserBundle:Tache:edit" }
+    methods:  [GET, POST]
+
+tache_delete:
+    path:     /{idTache}/delete
+    defaults: { _controller: "SocialProUserBundle:Tache:delete" }
+    methods:  DELETE

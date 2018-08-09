@@ -1,0 +1,23 @@
+social_pro_chef_homepage:
+    path:     /
+    defaults: { _controller: SocialProChefBundle:Default:index }
+
+ChefProjets:
+    path:     /Projets
+    defaults: { _controller: SocialProChefBundle:Projet:projet }
+
+ChefSupprimer:
+    path:     /Supprimer/{id}
+    defaults: { _controller: SocialProChefBundle:Projet:delete }
+
+ChefModifier:
+    path:     /Modifier/{id}
+    defaults: { _controller: SocialProChefBundle:Projet:update }
+
+ChefAjouter:
+    path:     /Ajouter
+    defaults: { _controller: SocialProChefBundle:Projet:add }
+
+PDF2:
+    path:     /pdf
+    defaults: { _controller: SocialProChefBundle:Projet:pdf }

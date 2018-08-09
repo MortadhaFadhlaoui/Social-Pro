@@ -1,0 +1,91 @@
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block  content %}
+
+
+    <div class="text-center">
+        <h3 class="border-primary"><span class="heading_border bg-primary">Forum</span></h3>
+        <br>
+        </br>
+    </div>
+    {{ form_start(form) }}
+    {{ form_widget(form.contenuPublication, {'attr': {'placeholder': 'N hésitez pas à parcourir le forum mais aussi les autres fonctionnalités pour vous tenir au courant de l actualité de notre reseau social','class': 'form-control required'}}) }}
+    <input type="submit" class="btn btn-primary" value="{{ 'Publier'|trans }}" />
+    {{ form_end(form) }}
+    <table>
+
+        <tbody>
+        {% for publication in publications %}
+            <div id="tab-activity" class="tab-pane fade in active">
+                <div class="activity">
+                    <div class="imgs-profile">
+                        <a class="pull-left" href="#">
+                            {#{% if profiles is defined %}
+                                {% for pro in profiles %}
+                                    {% if pro.getIduser() == publication.idUserPublication %}
+                                        {% if pro .imageName == null %}
+                                            <img class="media-object img-circle" src="{{ asset('img/authors/user-avatar-placeholder.png') }}" alt=""/>
+                                        {% else %}
+                                            <img class="media-object img-circle" src="{{app.request.basepath}}/img/authors/{{ pro.imageName }}"  alt=""/>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}#}
+                            <img class="media-object img-circle" src="{{ asset('img/authors/avatar3.jpg') }}" alt=""></a>
+                        <div class="media-body">
+                            <h3> {{ publication.idUserPublication }}</h3>
+
+
+                            <br>
+                            <small class="text-muted">
+                                {% if publication.datePublication %}{{ publication.datePublication|date('d-m-Y h:m:s') }}{% endif %}
+                            </small>
+                            <p>
+                            <h3> {{ publication.contenuPublication }} </h3>
+                            <i class="fa fa-fw fa-star-o" style="float: right;"></i>
+                            <a href="{{ path('publication_new', { 'idPublication': publication.idPublication }) }}">  </a>
+
+
+
+                            {#{{ form_start(form1) }}#}
+                            {#{{ form_widget(form1.contenuCommentaire) }}#}
+                            {#<label>aaaa</label>#}
+                            {#{{ form_start(form1) }}#}
+                            {#{{ form_end(form1) }}#}
+                            {#<a  href="{{ path('commentaire_new', { 'idPublication': publication.idPublication }) }}"> <input type="submit" class="btn btn-primary" value="{{ 'Commenter'|trans }}"  />#}
+                            {#</a>                         #}{#{{ form_end(form1) }}#}
+
+                            {#<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6 text-center l5">#}
+
+                            {#</div>#}
+                            <ul>
+                                {% if user.username == publication.idUserPublication %}
+                                <li>
+                                    <a href="{{ path('publication_edit', { 'idPublication': publication.idPublication }) }}"><button name="color" type="button" class="btn btn-info" value="btn-info" style="float: right">Modifier</button></a>
+
+
+                                </li>
+
+                                {% endif %}
+
+
+                            </ul>
+
+
+
+                            </p>
+
+
+                            <!-- media -->
+                            <!-- media --> </div>
+                    </div>  </div>  </div>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
+
+
+
+

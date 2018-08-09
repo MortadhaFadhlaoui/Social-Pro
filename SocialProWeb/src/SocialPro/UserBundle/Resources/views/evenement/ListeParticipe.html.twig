@@ -1,0 +1,33 @@
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block content %}
+
+    <div class="row">
+
+        <!-- Testimonial Section -->
+        <div class="text-center">
+            <h3 class="border-primary"><span class="heading_border bg-primary">Les Participations</span></h3>
+        </div>
+        {% for participation in participations %}
+
+            <div class="col-md-4 col-sm-4">
+                <div>
+                    <h4>Participation</h4>
+                    <p>
+                        <label> vous avez participé à l'evenement   {{ participation.idEvenement.nom }} qui a lieu le {{ participation.idEvenement.date|date  }} </label>
+                    </p>
+                </div>
+
+                <a href="{{ path('ajoutEventRating', {'id':participation.idEvenement.idEvenement}) }}" ><i class="livicon" data-name="checked-on" data-size="22" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i>
+                </a>    <label>Evaluez l'evenement</label>
+            </div>
+        {% endfor %}
+
+        <!-- Testimonial Section End -->
+    </div>
+
+{% endblock %}
+
+
+
+
+

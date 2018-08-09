@@ -1,0 +1,22 @@
+<h1>Rechercher des modeles</h1>
+{{ form(form) }}
+
+<h1>Liste des evenements</h1>
+<table border="1">
+    <tr>
+        <td>nom</td>
+        <td>date</td>
+        <td>lieu</td>
+        <td>$description</td>
+
+
+    </tr>
+    {% for evenement in evenements %}
+        <tr>
+            <td>{{ evenement.nom }}</td>
+            <td>{{ evenement.date|date  }}</td>
+            <td>{{ evenement.lieu }}</td>
+            <td>{{ evenement.description }}</td>
+        </tr>
+    {% endfor %}
+</table>

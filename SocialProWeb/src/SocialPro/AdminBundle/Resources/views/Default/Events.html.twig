@@ -1,0 +1,73 @@
+{% extends"AdminBundle::admin.html.twig" %}
+{% block  content %}
+    <!-- Main content -->
+    <section class="content paddingleft_right15">
+        <div class="row">
+            <div class="panel panel-primary ">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
+                        Liste des Evenements
+                    </h4>
+                </div>
+                <br />
+                <div class="panel-body">
+                    <table class="table table-bordered " id="table">
+                        <thead>
+                        <tr class="filters">
+                            <th>Nom de l evenement</th>
+                            <th>date de l evenement</th>
+                            <th>
+                                lieu de l evenement
+                            </th>
+                            <th>type</th>
+
+                            <th>+de deatil</th>
+
+
+                        </tr>
+                        </thead>
+                        {% for Events in Eventss %}
+                            <tbody>
+                            <tr>
+                                <td>{{ Events.nom }}</td>
+                                <td>{{ Events.date|date  }}</td>
+                                <td>
+                                    {{ Events.lieu }}
+                                </td>
+                                <td>{{ Events.type }}</td>
+
+                                <td>
+                                    <a href="{{ path('showEvent',{'id':Events.idEvenement}) }}">
+                                        <i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view details"></i>                                    </a>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                            <!-- Modal for showing delete confirmation -->
+                            <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="user_delete_confirm_title">
+                                                Delete User
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure to delete this user? This operation is irreversible.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <a href="#" type="button" class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- row--> </section>
+{% endblock %}

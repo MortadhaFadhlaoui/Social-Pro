@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="but" prefHeight="538.0" prefWidth="707.0" style="-fx-background-color: white;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.QuestionController">
+    <stylesheets>
+        <URL value="@/CSS/question.css" />
+    </stylesheets>
+   <children>
+      <Label fx:id="title" layoutX="22.0" layoutY="20.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="57.0" prefWidth="638.0" style="-fx-background-color: #D3D3D3;">
+         <font>
+            <Font size="34.0" />
+         </font>
+         <effect>
+            <ColorAdjust />
+         </effect></Label>
+      <Label fx:id="content" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="22.0" layoutY="94.0" prefHeight="189.0" prefWidth="638.0" AnchorPane.bottomAnchor="255.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="138.0" AnchorPane.topAnchor="94.0">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <JFXListView fx:id="LisyReponse" layoutY="349.0" prefHeight="189.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="349.0" />
+      <JFXButton fx:id="AnswerButton" layoutX="6.0" layoutY="303.0" onAction="#AnswerAction" stylesheets="@../CSS/addquestion.css" text="Answer" />
+      <JFXTextArea fx:id="Answer" layoutX="91.0" layoutY="299.0" prefHeight="32.0" prefWidth="707.0" promptText="write your answer here" />
+      <JFXButton fx:id="delete" layoutX="724.0" layoutY="20.0" onAction="#deletequestion" text="Delete" />
+      <JFXButton fx:id="update" layoutX="724.0" layoutY="63.0" onAction="#updatequestion" text="Update" />
+   </children>
+</AnchorPane>

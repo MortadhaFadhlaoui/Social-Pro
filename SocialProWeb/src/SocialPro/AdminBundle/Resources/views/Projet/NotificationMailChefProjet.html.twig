@@ -1,0 +1,5 @@
+Bonjour Mr/Mme {{ projet.chefProjet.nom }} {{ projet.chefProjet.prenom }}, <br><br>
+Vous avez été assigné à un nouveau projet ' {{ projet.nom }} ' qui est un projet de {{ projet.description }}. <br>
+La date de début de ce projet est le {{ projet.dateDebut|date('d - F - Y') }}. <br>
+Pour plus d'information visitez <a href="http://localhost{{ path('ChefProjets') }}">ce lien</a>. <br> <br>
+Bonne Journée/Soirée.

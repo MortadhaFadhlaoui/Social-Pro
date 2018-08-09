@@ -1,0 +1,16 @@
+/*
+ * Empty Stylesheet file.
+ */
+.button:hover
+{
+    -fx-background-color:#00C853;
+    -fx-text-fill:#ffffff;
+    -fx-alignment:center;
+}
+button
+{
+    -fx-background-color:#e67e22;
+}
+.mainFxmlClass {
+
+}

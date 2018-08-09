@@ -1,0 +1,78 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+<h3 class="black_bg">
+    <img src="img/logo.png" alt="josh logo">
+    <br>Sign Up</h3>
+<div class="form-group">
+    <label style="margin-bottom:0px;" class="youmail">
+        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+        Nom d'utilisateur
+    </label>
+    <p >{{ form_widget(form.username, {'attr': {'placeholder': 'Nom utilisateur','required' : 'true'}}) }}</p>
+</div>
+
+<div class="form-group">
+    <label style="margin-bottom:0px;" class="youmail">
+        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+        Nom
+    </label>
+    {{ form_widget(form.nom, {'attr': {'placeholder': 'Nom','required' : 'true'}}) }}
+</div>
+
+<div class="form-group">
+    <label style="margin-bottom:0px;" class="youmail">
+        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+        Prenom
+    </label>
+    {{ form_widget(form.prenom, {'attr': {'placeholder': 'Prenom','required' : 'true'}}) }}
+</div>
+
+<div class="form-group">
+    <label style="margin-bottom:0px;" class="youmail">
+        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+        Cin
+    </label>
+    {{ form_widget(form.cin, {'attr': {'placeholder': 'Cin','required' : 'true'}}) }}
+</div>
+
+<div class="form-group">
+    <label style="margin-bottom:0px;" class="youmail">
+        <i class="livicon" data-name="mail" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+        E-mail
+    </label>
+    {{ form_widget(form.email, {'attr': {'placeholder': 'Email','required' : 'true'}}) }}
+</div>
+
+<div class="form-group">
+    <label style="margin-bottom:0px;" class="youpasswd">
+        <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+        Password
+    </label>
+    <p >{{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Votre mot de passe','required' : 'true'}}) }}</p>
+</div>
+
+<div class="form-group">
+    <label style="margin-bottom:0px;" for="passwor_confirm" class="youpasswd">
+        <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+        Confirm Password
+    </label>
+    <p >{{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Répéter mot de passe','required' : 'true'}}) }}</p>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label" for="selectbasic">Role</label>
+    <div class="col-md-4">
+       {{ form_widget(form.roles) }}
+    </div>
+</div>
+
+<p class="signin button">
+    <input type="submit" class="btn btn-success" value="{{ 'registration.submit'|trans }}" />
+</p>
+<p class="change_link">
+    <a href="{{ path('fos_user_security_login') }}" class="to_register">
+        <button type="button" class="btn btn-responsive botton-alignment btn-warning btn-sm">Back</button>
+    </a>
+</p>
+{{ form_end(form) }}

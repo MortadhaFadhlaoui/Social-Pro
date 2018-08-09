@@ -1,0 +1,58 @@
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block stylesheet %}
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            min-width: 150px;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block  content %}
+    <div class="container well" style="margin-top: 50px; text-align: center">
+        <fieldset>
+            <legend style="text-align: center; font-size: 36px; height: 10%; margin-bottom: 2%">Liste des Personnes
+            </legend>
+        </fieldset>
+        <div class="list-group">
+            {% for user in users %}
+                <a class="list-group-item">
+                    <h4 class="list-group-item-heading" style="color: #6b6b6b; font-size: 15px;">Nom et Prénom : <b
+                                style="color: #000000;font-size: 20px;">{{ user.prenom }} {{ user.nom }}</b></h4>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    {#<br><br><br>#}
+    {#<h2>Liste des Personnes Allons Avec Vous Pour Le Trajet de {{ trajet.depart }} à {{ trajet.arrive }}</h2>#}
+
+    {#<br><br>#}
+    {#<br><br>#}
+    {#<table>#}
+        {#<tr>#}
+            {#<th>Nom et Prénom</th>#}
+            {#<th>Visitez Son Profile</th>#}
+        {#</tr>#}
+        {#{% for user in users %}#}
+            {#<tr>#}
+                {#<td>{{ user.nom }}  {{ user.prenom }}</td>#}
+                {#<td><a href="#">Profile</a></td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+    {#</table>#}
+    {#<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>#}
+
+{% endblock %}

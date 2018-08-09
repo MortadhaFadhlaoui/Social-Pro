@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="807.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GroupeController">
+   <left>
+      <VBox prefHeight="538.0" prefWidth="229.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="131.0" prefWidth="143.0">
+                     <children>
+                        <Label fx:id="groupename" prefHeight="22.0" prefWidth="138.0" />
+                        <ImageView fx:id="imagegroupe" fitHeight="114.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="VBoxOnwer" prefHeight="131.0" prefWidth="113.0">
+                     <children>
+                        <JFXButton fx:id="Delete" onAction="#deletegroup" prefHeight="41.0" prefWidth="79.0" stylesheets="@../CSS/listquestion.css" text="Delete">
+                           <VBox.margin>
+                              <Insets left="25.0" top="15.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="Update" onAction="#updategroupe" prefHeight="42.0" prefWidth="84.0" stylesheets="@../CSS/listquestion.css" text="Update">
+                           <VBox.margin>
+                              <Insets left="25.0" top="15.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="43.0" prefWidth="251.0">
+               <children>
+                  <Label prefHeight="47.0" prefWidth="87.0" text="Members Group" />
+               </children>
+            </HBox>
+            <JFXListView fx:id="listuser" prefHeight="364.0" prefWidth="188.0" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="538.0" prefWidth="603.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="memeberinvit" onAction="#addmember" prefHeight="29.0" prefWidth="106.0" promptText="Add Member">
+               <VBox.margin>
+                  <Insets left="450.0" />
+               </VBox.margin>
+            </TextField>
+            <JFXListView fx:id="ListMessage" onMouseClicked="#download" prefHeight="474.0" prefWidth="570.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </JFXListView>
+            <HBox prefHeight="44.0" prefWidth="584.0">
+               <children>
+                  <JFXTextArea fx:id="send" onKeyPressed="#sendmessage" prefHeight="43.0" prefWidth="563.0" promptText="Send Message" />
+                  <JFXButton fx:id="Upload" onAction="#Uploadfile" prefHeight="31.0" prefWidth="149.0" stylesheets="@../CSS/listquestion.css" text="Upload" />
+               </children>
+            </HBox>
+            <HBox prefHeight="119.0" prefWidth="584.0" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

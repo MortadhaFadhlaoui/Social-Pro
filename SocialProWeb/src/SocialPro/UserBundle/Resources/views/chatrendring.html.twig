@@ -1,0 +1,70 @@
+{% if currentUser %}
+<div class="chatbox" id="chatbox">
+<span class="chat-text">
+</span>
+    <div id="chatboxx">
+        <div id="friendslist">
+            <div id="topmenu">
+                <span class="friends"></span>
+            </div>
+            <div id="match">
+            </div>
+            <div id="friends" class="friendsforever">
+                {% for user in users %}
+                    {% if user.id != currentUser.id %}
+                        <div onclick="return false;" data-number="{{ user.id }}" class="friend">
+                            {% if profiles is empty %}
+                                <img src="{{ asset('img/authors/user-avatar-placeholder.png') }}"/>
+                                {% else %}
+                            {% for pro in profiles %}
+                                {% if user.id == pro.iduser.id %}
+                                        {% if pro.imageName is not null %}
+                                        <img src="{{app.request.basepath}}/img/authors/{{ pro.imageName }}" />
+                                         {% else %}
+                                        <img src="{{ asset('img/authors/user-avatar-placeholder.png') }}"/>
+                                           {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <strong>{{ user.username }}</strong><br>
+                            <span>{{ user.email }}</span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div id="search">
+                <input type="text" id="searchfield" class="searchfieldd"/>
+            </div>
+        </div>
+        <div id="belousovChat" class="p1" data-author="{{ currentUser.id }}" data-addressee="" data-action="{{ getMessageUrl }}" data-vu="{{ vuMessageUrl }}">
+
+            <div id="profile">
+
+                <div id="close">
+                    <div class="cy"></div>
+                    <div class="cx"></div>
+                </div>
+
+                <p>Miro Badev</p>
+                <span></span>
+            </div>
+            <div id="belousovMessageZone">
+            </div>
+            <div id="belousovFormZone">
+
+                {{ form_start(chatForm) }}
+                {{ form_widget(chatForm.messageText) }}
+
+                {{ form_errors(chatForm) }}
+
+                {{ form_end(chatForm) }}
+            </div>
+        </div>
+    </div>
+    <div id="close-chat" onclick="closeChatbox()">&times;</div>
+    <div id="minim-chat" onclick="minimChatbox()" style="background-color: #337ab7;"></div>
+    <div id="maxi-chat" onclick="loadChatbox()" style="background-color: #337ab7;"></div>
+</div>
+{% else %}
+    <p>Войдите на сайт, для доступа к чату</p>
+{% endif %}

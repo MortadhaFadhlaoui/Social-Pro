@@ -1,0 +1,28 @@
+{% extends"AdminBundle::admin.html.twig" %}
+{% block  content %}
+<div class="col-md-6">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4 class="panel-title">Detaille de l'evenement</h4>
+            <span class="pull-right">
+                <i class="glyphicon glyphicon-chevron-up showhide clickable"></i>
+                <i class="glyphicon glyphicon-remove removepanel clickable"></i>
+                                </span>
+        </div>
+        <div class="panel-body">
+            <p>
+            Nom de l'evnement : {{ events.nom }}
+                <br>
+                Description de l'evenement : {{ events.description}}
+                <br>
+                Confidentialité de l'evenement : {{ events.confidentialite }}
+                <br>
+                Nombres de participants à l'evenement : {{ nbp }}
+                <br>
+                La moyenne des notes attribuer à cet evnement : {{ moyenne }}
+
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

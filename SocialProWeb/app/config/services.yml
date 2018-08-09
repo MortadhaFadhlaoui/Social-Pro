@@ -1,0 +1,22 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+    belousov.chat.user_class: SocialPro\UserBundle\Entity\User
+
+services:
+    fos_user.doctrine_registry:
+        alias: doctrine
+    redirect.after.login:
+          class:  AppBundle\Redirection\AfterLoginRedirection
+          arguments:  ['@router']
+    belousov.mapping.listener:
+          class: belousovr\belousovChatBundle\EventListener\DynamicRelationSubscriber
+          tags:
+              - { name: doctrine.event_listener, event: loadClassMetadata }
+          arguments:
+              - %belousov.chat.user_class%
+    activity_listener:
+                class: SocialPro\UserBundle\Listener\ActivityListener
+                arguments: ['@security.token_storage', '@doctrine.orm.entity_manager']
+                tags:
+                    - { name: kernel.event_listener, event: kernel.controller, method: onCoreController }

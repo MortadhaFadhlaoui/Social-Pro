@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="vb" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="143.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="97.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Utils/jihn-highnoon-splash-final.jpg" />
+         </image>
+         <VBox.margin>
+            <Insets bottom="10.0" left="13.0" right="12.0" top="10.0" />
+         </VBox.margin>
+      </ImageView>
+      <JFXButton fx:id="prop" accessibleText="pro" contentDisplay="TOP" prefHeight="80.0" prefWidth="191.0" stylesheets="@sidebar.css" text="Proposer Question">
+         <graphic>
+            <ImageView fitHeight="42.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Utils/Help_mark_query_question_support-512.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="mesq" accessibleText="mes" contentDisplay="TOP" prefHeight="80.0" prefWidth="191.0" stylesheets="@sidebar.css" text="Mes Question">
+         <graphic>
+            <ImageView fitHeight="42.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Utils/hangouts.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="form" accessibleText="for" contentDisplay="TOP" prefHeight="80.0" prefWidth="191.0" stylesheets="@sidebar.css" text="Formu">
+         <graphic>
+            <ImageView fitHeight="42.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Utils/Chat_talk_voice_bubble_phone_message_text.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="group" accessibleText="gro" contentDisplay="TOP" prefHeight="80.0" prefWidth="192.0" stylesheets="@sidebar.css" text="Groups" wrapText="true">
+         <graphic>
+            <ImageView fitHeight="42.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Utils/images.jpg" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="exit" accessibleText="exi" contentDisplay="TOP" prefHeight="80.0" prefWidth="192.0" stylesheets="@sidebar.css" text="Exit">
+         <graphic>
+            <ImageView fitHeight="42.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Utils/close-blue.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+   </children>
+   <stylesheets>
+      <URL value="@sidebar.css" />
+      <URL value="@../CSS/sidebar.css" />
+   </stylesheets>
+</VBox>

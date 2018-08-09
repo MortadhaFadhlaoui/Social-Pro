@@ -1,0 +1,91 @@
+{% extends"AdminBundle::admin.html.twig" %}
+{% block  content %}
+    <!-- Main content -->
+    <section class="content paddingleft_right15">
+        <div class="row">
+            <div class="panel panel-primary ">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
+                        Users List
+                    </h4>
+                </div>
+                <br />
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div id="table_filter" class="dataTables_filter">
+                                <label>
+                                    <form method="post" action="{{ path('users') }}">
+                                    <input class="form-control input-small input-inline" aria-controls="table" type="search" name="rech" placeholder="Nom">
+                                        <button type="submit" value="choisir" class="btn btn-primary start">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                            <span>Recherche</span>
+                                        </button>
+                                    </form>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered " id="table">
+                        <thead>
+                        <tr class="filters">
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>
+                                User E-mail
+                            </th>
+                            <th>Status</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        {% for user in userss %}
+                        <tbody>
+                        <tr>
+                            <td>{{ user.nom }}</td>
+                            <td>{{ user.prenom }}</td>
+                            <td>
+                                {{ user.email }}
+                            </td>
+                            <td>{{ user.statut }}</td>
+                            <td>
+                                {{ user.lastLogin|date }}
+                            </td>
+                            <td>
+                                <a href="view_user.html">
+                                    <i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i>
+                                </a>
+                                <a href="{{ path('DeleteUser',{'id':user.id}) }}">
+                                    <i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                            <!-- Modal for showing delete confirmation -->
+                            <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="user_delete_confirm_title">
+                                                Delete User
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure to delete this user? This operation is irreversible.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <a href="#" type="button" class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- row--> </section>
+{% endblock %}

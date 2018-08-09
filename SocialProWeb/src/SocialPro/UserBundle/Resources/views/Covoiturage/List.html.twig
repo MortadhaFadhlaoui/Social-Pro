@@ -1,0 +1,295 @@
+{% extends "@SocialProUser/master.html.twig" %}
+{% block stylesheet %}
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        #myTextField {
+            background: white url({{ asset('images/magnifying-glass.png') }}) 5px no-repeat;
+            padding-left: 17px;
+            text-indent: 17px;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .spacing {
+            float: right;
+            margin-left: 5px;
+        }
+    </style>
+{% endblock %}
+{% block  content %}
+
+    <div class="modal fade in" id="responsive" tabindex="-1" role="dialog" aria-hidden="false" style="display:none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Le Trajet sur Google Map</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-body">
+                    </div>
+                    <!-- Collapseone End -->
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('vendors/modal/js/classie.js') }}"></script>
+    <script src="{{ asset('vendors/modal/js/modalEffects.js') }}"></script>
+    <link href="{{ asset('vendors/modal/css/component.css') }}" rel="stylesheet"/>
+    <div style="text-align: center; margin-top: 50px; width: 50%;" class="container">
+        <input type="text" id="myTextField" name="myTextField" class="form-control input-lg" placeholder="Recherche"/>
+    </div>
+    <div class="container well" style="margin-top: 50px; margin-bottom: 50px;">
+        <fieldset>
+            <legend style="text-align: center; font-size: 36px; height: 10%; margin-bottom: 2%; color: #09bd8f;">Liste
+                des Trajets Disponible
+            </legend>
+        </fieldset>
+        <div style="text-align: center" id="match"></div>
+        <div id="listgroup" class="list-group">
+            {% for trajet in trajets %}
+                <a class="list-group-item">
+                    <button type="button"
+                            onclick="location.href='{{ path('Reserver', {'id':trajet.idTrajet}) }}'"
+                            class="btn btn-labeled btn-success pull-right spacing">
+                                            <span class="btn-label">
+                                                <img src="{{ asset("images/checked.png") }}">
+                                            </span>
+                    </button>
+                    <button type="button"
+                            onclick="rechercher('{{ trajet.depart }}','{{ trajet.arrive }}',true); affiche();"
+                            class="btn btn-labeled btn-danger pull-right spacing">
+                                            <span class="btn-label">
+                                                <img src="{{ asset("images/placeholder.png") }}">
+                                            </span>
+                    </button>
+                    <button type="button"
+                            onclick="rechercher('{{ trajet.depart }}','{{ trajet.arrive }}',true); affiche2();"
+                            class="btn btn-labeled btn-warning pull-right spacing">
+                                            <span class="btn-label">
+                                                <img src="{{ asset("images/google-maps.png") }}">
+                                            </span>
+                    </button>
+                    <h4 class="list-group-item-heading" style="color: #6b6b6b; font-size: 15px;">Départ : <b
+                                style="color: #000000;font-size: 20px;">{{ trajet.depart }}</b> -
+                        Arrivée : <b
+                                style="color: #000000;font-size: 20px;">{{ trajet.arrive }}</b></h4>
+                    <h4 class="list-group-item-heading" style="color: #6b6b6b;font-size: 15px;">Places Disponible :
+                        <b
+                                style="color: #000000;font-size: 20px">{{ trajet.nombrePlace }}</b></h4>
+                    <span class="label label-primary pull-right"
+                          style="font-size: 13px;">Créateur : {{ trajet.idUserTrajet.nom }}</span>
+                    <p class="list-group-item-text" style="font-size: 15px;">Date de Départ : <b
+                                style="color: #000000;font-size: 20px">{{ trajet.date|date('d-F-Y') }}</b> à <b
+                                style="color: #000000;font-size: 20px;">{{ trajet.heure|date('H:i') }}</b></p>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        function affiche() {
+            document.getElementById('gDir').style.display = 'none';
+            document.getElementById('gMap').style.display = '';
+            /*gestion des routes*/
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            /*emplacement par défaut de la carte (j'ai mis Paris)*/
+            var maison = new google.maps.LatLng(36.8556748, 10.187877999999955);
+            /*option par défaut de la carte*/
+            var myOptions = {
+                zoom: 6,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                center: maison
+            }
+            /*creation de la map*/
+            map = new google.maps.Map(document.getElementById("map"), myOptions);
+            /*connexion de la map + le panneau de l'itinéraire*/
+            directionsDisplay.setMap(map);
+            directionsDisplay.setPanel(document.getElementById("divRoute"));
+            /*intialise le geocoder pour localiser les adresses */
+            geocoder = new google.maps.Geocoder();
+            directionsService = new google.maps.DirectionsService();
+        }
+        function affiche2() {
+            document.getElementById('gMap').style.display = 'none';
+            document.getElementById('gDir').style.display = '';
+        }
+        var directionsDisplay;
+        var target = document.head;
+        var directionsService;
+        window.addEventListener('load', function () {
+            /*gestion des routes*/
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            /*emplacement par défaut de la carte (j'ai mis Paris)*/
+            var maison = new google.maps.LatLng(36.8556748, 10.187877999999955);
+            /*option par défaut de la carte*/
+            var myOptions = {
+                zoom: 6,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                center: maison
+            }
+            /*creation de la map*/
+            map = new google.maps.Map(document.getElementById("map"), myOptions);
+            /*connexion de la map + le panneau de l'itinéraire*/
+            directionsDisplay.setMap(map);
+            directionsDisplay.setPanel(document.getElementById("divRoute"));
+            /*intialise le geocoder pour localiser les adresses */
+            geocoder = new google.maps.Geocoder();
+            directionsService = new google.maps.DirectionsService();
+        });
+        var observer = new MutationObserver(function (mutations) {
+            for (var i = 0; mutations[i]; ++i) { // notify when script to hack is added in HTML head
+                if (mutations[i].addedNodes[0].nodeName == "SCRIPT" && mutations[i].addedNodes[0].src.match(/\/AuthenticationService.Authenticate?/g)) {
+                    var str = mutations[i].addedNodes[0].src.match(/[?&]callback=.*[&$]/g);
+                    if (str) {
+                        if (str[0][str[0].length - 1] == '&') {
+                            str = str[0].substring(10, str[0].length - 1);
+                        } else {
+                            str = str[0].substring(10);
+                        }
+                        var split = str.split(".");
+                        var object = split[0];
+                        var method = split[1];
+                        window[object][method] = null; // remove censorship message function _xdc_._jmzdv6 (AJAX callback name "_jmzdv6" differs depending on URL)
+                        //window[object] = {}; // when we removed the complete object _xdc_, Google Maps tiles did not load when we moved the map with the mouse (no problem with OpenStreetMap)
+                    }
+                    observer.disconnect();
+                }
+            }
+        });
+        var config = {attributes: true, childList: true, characterData: true}
+        observer.observe(target, config);
+        var map, geocoder, marker;
+        var depart, arrivee = "72 AVENUE HABIB BOURGUIBA 2080 ARIANA", ptCheck;
+
+        /*initialise google MAP V3*/
+        //            function init() {
+        //                /*gestion des routes*/
+        //                directionsDisplay = new google.maps.DirectionsRenderer();
+        //                /*emplacement par défaut de la carte (j'ai mis Paris)*/
+        //                var maison = new google.maps.LatLng(36.8556748, 10.187877999999955);
+        //                /*option par défaut de la carte*/
+        //                var myOptions = {
+        //                    zoom:6,
+        //                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+        //                    center: maison
+        //                }
+        //                /*creation de la map*/
+        //                map = new google.maps.Map(document.getElementById("map"), myOptions);
+        //                /*connexion de la map + le panneau de l'itinéraire*/
+        //                directionsDisplay.setMap(map);
+        //                directionsDisplay.setPanel(document.getElementById("divRoute"));
+        //                /*intialise le geocoder pour localiser les adresses */
+        //                geocoder = new google.maps.Geocoder();
+        //            }
+
+
+        function trouveRoute() {
+            /*test si les variables sont bien initialisés*/
+
+            if (depart) {
+                /*mode de transport*/
+                var request = {
+                    origin: depart,
+                    destination: arrivee,
+                    travelMode: 'DRIVING'
+                };
+                /*appel à l'API pour tracer l'itinéraire*/
+                directionsService.route(request, function (response, status) {
+                    if (status == google.maps.DirectionsStatus.OK) {
+                        directionsDisplay.setDirections(response);
+                    }
+                });
+            }
+        }
+
+        function rechercher(src, src1, code) {
+            ptCheck = code;
+            /*adresse de départ ou arrivée ? */
+            if (geocoder) {
+                geocoder.geocode({'address': src}, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+
+                        /*ajoute un marqueur à l'adresse choisie*/
+                        map.setCenter(results[0].geometry.location);
+                        if (marker) {
+                            marker.setMap(null);
+                        }
+                        marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location
+                        });
+                        /*on remplace l'adresse par celle fournie du geocoder*/
+//                            document.getElementById(src).value = results[0].formatted_address;
+
+                        if (ptCheck) {
+                            depart = results[0].formatted_address;
+                        }
+
+                        geocoder.geocode({'address': src1}, function (results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                arrivee = results[0].formatted_address;
+                                /*trace la route*/
+                                trouveRoute();
+                            } else {
+                                alert("Geocode n'a rien trouvé !\n raison : " + status);
+                            }
+                        });
+                    } else {
+                        alert("Geocode n'a rien trouvé !\n raison : " + status);
+                    }
+                });
+            }
+
+        }
+    </script>
+    <div class="container well" id="gMap" style="margin-top: 50px; margin-bottom: 100px; display: none;">
+        <fieldset>
+            <legend style="text-align: center; font-size: 36px; height: 10%; margin-bottom: 2%; color: #09bd8f;">Google
+                Map
+            </legend>
+        </fieldset>
+        <div class="panel-body" style="height: 500px;" id="map">
+        </div>
+    </div>
+    <div class="container well" id="gDir" style="margin-top: 50px; margin-bottom: 100px; display: none;">
+        <fieldset>
+            <legend style="text-align: center; font-size: 36px; height: 10%; margin-bottom: 2%; color: #09bd8f;">Google
+                Direction
+            </legend>
+        </fieldset>
+        <div id="divRoute" class="panel-body"></div>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqspLkLXoXLLHg0TopKhjsPZKJMkP7q-Q"
+            async defer></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/covoiturageRecherche.js') }}"></script>
+    <!-- //Responsive Section End -->
+    <!-- Easy to Use Section Start -->
+{% endblock %}

@@ -1,0 +1,95 @@
+.list-cell:selected{
+    -fx-background-color: #29d3f1;
+}
+
+.jfx-list-cell{
+    -fx-background-insets: 0.0;
+    -fx-alignment: CENTER;
+}
+
+.jfx-list-cell .jfx-rippler{
+    -fx-rippler-fill :#ffffff;
+}
+
+.jfx-list-cell :hover{
+    -fx-background-color: #29d3f1;
+}
+
+.jfx-list-view{    
+    -fx-background-color:transparent;
+    -fx-background-insets: 0;
+    -fx-cell-vertical-margin: 10.0;
+    -fx-vertical-gap: 100;
+    
+}
+.jfx-list-view .scroll-bar:horizontal .track,
+.jfx-list-view .scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius:2em;
+}
+ 
+.jfx-list-view .scroll-bar:horizontal .increment-button ,
+.jfx-list-view .scroll-bar:horizontal .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 0 10 0;
+}
+ 
+.jfx-list-view .scroll-bar:vertical .increment-button ,
+.jfx-list-view .scroll-bar:vertical .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 10 0 0;
+}
+.jfx-list-view  .scroll-bar .increment-arrow,
+.jfx-list-view  .scroll-bar .decrement-arrow{
+    -fx-shape:" ";
+    -fx-padding:0;
+}
+ 
+.jfx-list-view .scroll-bar:horizontal .thumb,
+.jfx-list-view .scroll-bar:vertical .thumb {
+    -fx-background-color:derive(black,90%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+}
+.jfx-popup-container{
+    -fx-background-color:WHITE;
+}
+
+.button-raised{
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -jfx-button-type: RAISED;
+    -fx-background-color: #0084ff;
+    -fx-pref-width: 100;
+    -fx-text-fill: WHITE;
+}
+.title
+{  -fx-font-size: 1.2em;
+    -fx-font-weight: bold;  
+}
+.time
+{   -fx-font-size: 1em;
+    -fx-text-fill: #8e44ad;
+}
+.image
+{
+    -fx-pref-width:50px;
+    -fx-background-color:#43609C;
+    -fx-background-radius:50px;
+    -fx-pref-height:50px;    
+    -fx-text-fill:white;
+    -fx-border-color: WHITE;
+}
+.bt
+{
+    -fx-background-color: #0084ff;
+    -fx-text-fill: white;
+}
+.bt:hover
+{
+    -fx-background-color: #00c300;
+}

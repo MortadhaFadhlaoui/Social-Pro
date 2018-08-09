@@ -1,0 +1,11 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.jfx-hamburger-icon{
+    -fx-spacing: 5;
+    -fx-cursor: hand;
+}

@@ -1,0 +1,48 @@
+{% extends "@Admin/admin.html.twig" %}
+{% block  content %}
+    <div class="container well" style="margin-top: 50px">
+        <form id="addForm" method="POST">
+            <fieldset>
+                <legend style="text-align: center; font-size: 36px; height: 10%; margin-bottom: 2%">Modifier Projet
+                </legend>
+            </fieldset>
+            <div class="form-group">
+                <input type="text" name="nom" class="form-control input-lg" placeholder="Nom" value="{{ projet.nom }}">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control input-lg no-resize" name="desc" rows="6"
+                          placeholder="Description">{{ projet.description }}</textarea>
+            </div>
+            <div class="form-group">
+                <input name="dated" type="date" id="myDate" class="form-control input-lg" placeholder="Date Début">
+                <script>
+                    document.getElementById("myDate").value = "{{ dated }}";
+                </script>
+            </div>
+            <div class="form-group">
+                <input name="datef" type="date" id="myDate1" class="form-control input-lg" placeholder="Date Fin">
+                <script>
+                    document.getElementById("myDate1").value = "{{ datef }}";
+                </script>
+            </div>
+            <div class="form-group">
+                <select name="chef" class="form-control input-lg" placeholder="Chef Projet">
+                    <option value="1" disabled>Chef Projet</option>
+                    {% for chef in chefs %}
+                        {% if chef == projet.chefProjet %}
+                            <option selected value="{{ chef.id }}">{{ chef.nom }}</option>
+                        {% else %}
+                            <option value="{{ chef.id }}">{{ chef.nom }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div style="text-align: center; word-spacing: 16px;">
+                <input type="submit" style="border-radius: 0px; font-size: 15px; padding: 8px 12px;"
+                       class="btn btn-primary" value="Modifier">
+                <button class="btn btn-danger" style="border-radius: 0px; font-size: 15px; padding: 8px 12px;">Annuler
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

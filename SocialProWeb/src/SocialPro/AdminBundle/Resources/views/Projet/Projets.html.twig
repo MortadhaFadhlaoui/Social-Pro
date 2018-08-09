@@ -1,0 +1,100 @@
+{% extends "@Admin/admin.html.twig" %}
+{% block stylesheet %}
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            min-width: 150px;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block  content %}
+    {#<div class="container well" style="margin-top: 50px">#}
+        {#<fieldset>#}
+            {#<legend style="text-align: center; font-size: 36px; height: 10%; margin-bottom: 2%">Liste des Projets#}
+            {#</legend>#}
+        {#</fieldset>#}
+        {#<div class="list-group">#}
+            {#{% for projet in projets %}#}
+                {#<a class="list-group-item">#}
+                    {#<button class="pull-right"#}
+                            {#onclick="location.href ='{{ path('Supprimer', {'id':projet.idProjet}) }}'"><img#}
+                                {#src="{{ asset("images/delete.png") }}"#}
+                                {#style="width:24px; height:24px;"></button>#}
+                    {#<button class="pull-right"#}
+                            {#onclick="location.href ='{{ path('Modifier', {'id':projet.idProjet}) }}'"><img#}
+                                {#src="{{ asset("images/update.png") }}"#}
+                                {#style="width:24px; height:24px;"></button>#}
+                    {#<h4 class="list-group-item-heading" style="color: #6b6b6b; font-size: 15px;">Nom : <b#}
+                                {#style="color: #000000;font-size: 20px;">{{ projet.nom }}</b></h4>#}
+                    {#<h4 class="list-group-item-heading" style="color: #6b6b6b; font-size: 15px;">Description : <b#}
+                                {#style="color: #000000;font-size: 20px;">{{ projet.description }}</b></h4>#}
+                    {#<span class="label label-primary pull-right"#}
+                          {#style="font-size: 13px;">Chef : {{ projet.chefProjet.nom }}</span>#}
+                    {#<h4 class="list-group-item-headin" style="font-size: 15px;">Date de Début : <b#}
+                                {#style="color: #000000;font-size: 20px">{{ projet.dateDebut|date('d-F-Y') }}</b></h4>#}
+                    {#<h4 class="list-group-item-headin" style="font-size: 15px;">Date de Fin : <b#}
+                                {#style="color: #000000;font-size: 20px">{{ projet.dateFin|date('d-F-Y') }}</b></h4>#}
+                {#</a>#}
+            {#{% endfor %}#}
+        {#</div>#}
+    {#</div>#}
+
+    <div class="container well" style="margin-top: 50px">
+        <fieldset>
+            <legend style="text-align: center; font-size: 36px; height: 10%; margin-bottom: 2%">Liste des Projets
+                <a class="pull-right" href="{{ path('PDF1') }}"><img src="{{ asset('images/pdf.png') }}"></a>
+            </legend>
+        </fieldset>
+        {#<div class="form-group">#}
+            {#<table class="table table-hover">#}
+            <table>
+                <tr>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Date Début</th>
+                    <th>Date Fin</th>
+                    <th>Chef du Projet</th>
+                    <th>Supprimer</th>
+                    <th>Modifier</th>
+                    <th>Equipe</th>
+                </tr>
+                {% for projet in projets %}
+                    <tr>
+                        <td>{{ projet.nom }}</td>
+                        <td>{{ projet.description }}</td>
+                        <td>{{ projet.dateDebut|date('d - F - Y') }}</td>
+                        <td>{{ projet.dateFin|date('d - F - Y') }}</td>
+                        <td>{{ projet.chefProjet.nom }}</td>
+                        <td><a href="{{ path('Supprimer', {'id':projet.idProjet}) }}"><img
+                                        src="{{ asset("images/delete.png") }}" style="width:24px; height:24px;"></a>
+                        </td>
+                        <td><a href="{{ path('Modifier', {'id':projet.idProjet}) }}"><img
+                                        src="{{ asset("images/update.png") }}" style="width:24px; height:24px;"></a>
+                        </td>
+                        <td><a href="{{ path('equipe', {'id':projet.idProjet}) }}"><img
+                                        src="{{ asset("images/update.png") }}" style="width:24px; height:24px;"></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {#</div>#}
+    </div>
+
+
+{% endblock %}

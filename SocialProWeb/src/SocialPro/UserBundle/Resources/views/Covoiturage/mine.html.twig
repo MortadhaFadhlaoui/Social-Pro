@@ -1,0 +1,97 @@
+{% extends "@SocialProUser/master.html.twig" %}
+{% block stylesheet %}
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            min-width: 120px;
+            text-align: center;
+        }
+        .spacing{
+            float:right;
+            margin-left: 5px;
+        }
+    </style>
+{% endblock %}
+{% block  content %}
+    {#<br><br><br>#}
+    {#<h2>Vos Trajets</h2>#}
+
+    {#<br><br>#}
+    {#<a href="{{ path('AjouterTrajet') }}" ><img src="{{ asset("images/add.png")}}" style="width:24px; height:24px;"></a>#}
+    {#<br><br>#}
+    {#<table>#}
+    {#<tr>#}
+    {#<th>Départ</th>#}
+    {#<th>Arrivée</th>#}
+    {#<th>Date de Départ</th>#}
+    {#<th>Heure de Départ</th>#}
+    {#<th>Nombre de Places</th>#}
+    {#<th>Supprimer</th>#}
+    {#<th>Modifier</th>#}
+    {#<th>Réservations</th>#}
+    {#</tr>#}
+    {#{% for trajet in trajets %}#}
+    {#<tr>#}
+    {#<td>{{ trajet.depart }}</td>#}
+    {#<td>{{ trajet.arrive }}</td>#}
+    {#<td>{{ trajet.date|date('d - F - Y') }}</td>#}
+    {#<td>{{ trajet.heure|date('H : i') }}</td>#}
+    {#<td>{{ trajet.nombrePlace }}</td>#}
+    {#<td><a href="{{ path('SupprimerTrajet', {'id':trajet.idTrajet}) }}" ><img src="{{ asset("images/delete.png")}}" style="width:24px; height:24px;"></a></td>#}
+    {#<td><a href="{{ path('ModifierTrajet', {'id':trajet.idTrajet}) }}" ><img src="{{ asset("images/update.png")}}" style="width:24px; height:24px;"></a></td>#}
+    {#<td><a href="{{ path('PartantAvecVous', {'id':trajet.idTrajet}) }}" ><img src="{{ asset("images/multiple-users-silhouette.png")}}" style="width:24px; height:24px;"></a></td>#}
+    {#</tr>#}
+    {#{% endfor %}#}
+    {#</table>#}
+    {#<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>#}
+
+    <div class="container well" style="margin-top: 50px">
+        <fieldset>
+            <legend style="text-align: center; font-size: 36px; height: 10%; margin-bottom: 2%;">Liste de Vos Trajets
+            </legend>
+        </fieldset>
+        <div class="list-group">
+            {% for trajet in trajets %}
+                <a class="list-group-item">
+                    <button type="button" onclick="location.href='{{ path('SupprimerTrajet', {'id':trajet.idTrajet}) }}'" class="spacing btn btn-labeled btn-danger pull-right">
+                                            <span class="btn-label">
+                                                <img src="{{ asset("images/rubbish-bin.png") }}">
+                                            </span>
+                    </button>
+                    <button type="button"  onclick="location.href='{{ path('ModifierTrajet', {'id':trajet.idTrajet}) }}'" class="spacing btn btn-labeled btn-info pull-right">
+                                            <span class="btn-label">
+                                                <img src="{{ asset("images/update-arrows.png") }}">
+                                            </span>
+                    </button>
+                    <button type="button"  onclick="location.href='{{ path('PartantAvecVous', {'id':trajet.idTrajet}) }}'" class="spacing btn btn-labeled btn-success pull-right">
+                                            <span class="btn-label">
+                                                <img src="{{ asset("images/stick-man.png") }}">
+                                            </span>
+                    </button>
+                    <h4 class="list-group-item-heading" style="color: #6b6b6b; font-size: 15px;">Départ : <b style="color: #000000;font-size: 20px;">{{ trajet.depart }}</b> -
+                        Arrivée : <b style="color: #000000;font-size: 20px;">{{ trajet.arrive }}</b></h4>
+                    <h4 class="list-group-item-heading" style="color: #6b6b6b;font-size: 15px;">Places Disponible : <b
+                                style="color: #000000;font-size: 20px">{{ trajet.nombrePlace }}</b></h4>
+                    <p class="list-group-item-text" style="font-size: 15px;">Date de Départ : <b
+                                style="color: #000000;font-size: 20px">{{ trajet.date|date('d-F-Y') }}</b> à <b
+                                style="color: #000000;font-size: 20px;">{{ trajet.heure|date('H:i') }}</b></p>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

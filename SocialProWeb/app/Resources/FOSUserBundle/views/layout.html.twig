@@ -1,0 +1,82 @@
+{% extends '::base.html.twig' %}
+
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block stylesheets %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/pages/login.css') }}"/>
+{% endblock %}
+
+{% block content %}
+    <div>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+            <a href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+            </a>
+        {% else %}
+            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+        {% endif %}
+    </div>
+
+    {% if app.request.hasPreviousSession %}
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    <div>
+        <div class="container">
+            <div class="row vertical-offset-100">
+                <div class="col-sm-6 col-sm-offset-3  col-md-5 col-md-offset-4 col-lg-4 col-lg-offset-4">
+                    <div id="container_demo">
+                        <a class="hiddenanchor" id="toregister"></a>
+                        <a class="hiddenanchor" id="tologin"></a>
+                        <a class="hiddenanchor" id="toforgot"></a>
+                        <div id="wrapper">
+                            <div id="login" class="animate form">
+                                {% block fos_user_content %}
+                                {% endblock fos_user_content %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <!-- global js -->
+    <script src="{{ asset('js/jquery-1.11.1.min.js') }}" type="text/javascript"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <!--livicons-->
+    <script src="{{ asset('vendors/livicons/minified/raphael-min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendors/livicons/minified/livicons-1.4.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/josh.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/metisMenu.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendors/holder-master/holder.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/TweenLite.min.js') }}"></script>
+    <script src="{{ asset('vendors/iCheck/icheck.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).mousemove(function (event) {
+                TweenLite.to($('body'), .5, {css: {'background-position': parseInt(event.pageX / 8) + "px " + parseInt(event.pageY / 12) + "px, " + parseInt(event.pageX / 15) + "px " + parseInt(event.pageY / 15) + "px, " + parseInt(event.pageX / 30) + "px " + parseInt(event.pageY / 30) + "px"}});
+            });
+
+            //Flat red color scheme for iCheck
+            $('input[type="checkbox"].minimal-blue').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue'
+            });
+        });
+    </script>
+    <!-- end of global js -->
+{% endblock %}

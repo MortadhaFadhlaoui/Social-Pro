@@ -1,0 +1,29 @@
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block  content %}
+
+    <div class="text-center">
+        <h3 class="border-primary"><span class="heading_border bg-primary">Modification De Votre Poste</span></h3>
+        <br>
+        </br>
+    </div>
+
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form.contenuPublication, {'attr': {'class': 'form-control required'}}) }}
+    <br>
+    </br>
+    <input onclick="myFunction2()" type="submit" class="btn btn-primary" value="{{ 'Modifier'|trans }}"/>
+    <br>
+    </br>
+    <br>
+
+
+    <script>
+        function myFunction2() {
+            alert("Votre Poste a été modifié !");
+        }
+    </script>
+    {{ form_end(edit_form) }}
+
+
+
+{% endblock %}

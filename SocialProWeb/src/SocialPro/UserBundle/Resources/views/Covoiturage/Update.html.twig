@@ -1,0 +1,101 @@
+{% extends "@SocialProUser/master.html.twig" %}
+{% block stylesheet %}
+    <style>
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            border-radius: 8px;
+            height: 7px;
+            border: 1px solid #bdc3c7;
+            background-color: #fff;
+        }
+
+        input[type='range']::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            background-color: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+{% block  content %}
+    <div class="container well" style="margin-top: 50px">
+        <form id="addForm" method="POST">
+            <fieldset>
+                <legend style="text-align: center; font-size: 36px; height: 10%; margin-bottom: 2%">Modifier Votre Trajet
+                </legend>
+            </fieldset>
+            <div class="form-group">
+                <input type="text" name="depart" id="depart" value="{{ trajet.depart }}" class="form-control input-lg" placeholder="Départ">
+            </div>
+            <div class="col-mod-3">
+                <p>
+                    <input type="button" id="hintAsk" style="background: transparent; border: 0; display: none;" value="Do you Mean :  ">
+                    <a type="button" style="font-size: 15px; color: forestgreen;" id="hint" onclick="ajouter()"></a>
+                </p>
+            </div>
+            <script>
+                function ajouter() {
+                    document.getElementById('depart').value = document.getElementById('hint').innerText;
+                    document.getElementById('hint').innerHTML = null;
+                    document.getElementById('hintAsk').style.display = 'none';
+                }
+            </script>
+            <div class="form-group">
+                <input type="text" id="arrivee" name="arrivee" value="{{ trajet.arrive }}" class="form-control input-lg" placeholder="Arrivée">
+            </div>
+            <div class="col-mod-3">
+                <p>
+                    <input type="button" id="hintAsk1" style="background: transparent; border: 0; display: none;" value="Do you Mean :  ">
+                    <a type="button" style="font-size: 15px; color: forestgreen;" id="hint1" onclick="ajouter2()"></a>
+                </p>
+            </div>
+            <script>
+                function ajouter2() {
+                    document.getElementById('arrivee').value = document.getElementById('hint1').innerText;
+                    document.getElementById('hint1').innerHTML = null;
+                    document.getElementById('hintAsk1').style.display = 'none';
+                }
+            </script>
+            <div class="form-group">
+                <input name="date" type="date" id="date"
+                       class="form-control input-lg" placeholder="Date">
+                <script>
+                    document.getElementById("date").value = "{{ date }}";
+                </script>
+            </div>
+            <div class="form-group">
+                <input name="heure" id="heure" type="time"
+                       class="form-control input-lg" placeholder="Heure">
+                <script>
+                    document.getElementById("heure").value = "{{ heure }}";
+                </script>
+            </div>
+            <div class="form-group">
+                <output name="amount" for="place" style="height: 55px;font-size: 20px;margin-left: 10px">Nombre de
+                    Places : 1
+                </output>
+                <input type="range" id="place" name="place" min="1" max="4" value="{{ trajet.nombrePlace }}" style="margin-left: 20px; width: 500px"
+                       value="0"
+                       oninput="amount.value='Nombre de Places  : '+place.value">
+            </div>
+            <div style="text-align: center; word-spacing: 16px;">
+                <input type="submit" style="border-radius: 0px; font-size: 15px; padding: 8px 12px;"
+                       class="btn btn-primary" value="Modifier">
+                <button class="btn btn-danger" style="border-radius: 0px; font-size: 15px; padding: 8px 12px;">Annuler
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqspLkLXoXLLHg0TopKhjsPZKJMkP7q-Q"
+            async defer></script>
+    <script src="{{ asset('js/ajout-covoiturage-validation.js') }}"></script>
+{% endblock %}

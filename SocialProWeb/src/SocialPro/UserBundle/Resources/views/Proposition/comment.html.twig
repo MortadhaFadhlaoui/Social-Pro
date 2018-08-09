@@ -1,0 +1,38 @@
+{% extends"@SocialProUser/master.html.twig" %}
+
+{% block  content %}
+    <div class="panel panel-warning">
+        <div class="panel-body">
+      {# <h4>{{ propcom.titre }}</h4>
+        <p>
+                {{ propcom.sujet }}
+            <strong>{{ propuser.nom }}</strong>
+            .
+        </p>#}
+        {% for com in comprop %}
+
+            <div class="alert-message alert-message-default">
+       <img width="50" style="font-size: 20" src="{{ asset('img/authors/'~com.idUser.idProfil[0].imageName) }}"><i>{{ com.idUser.nom }}</i>
+              <br><br> <input disabled="" class="form-control"   style="height: 70px; width: 200px;" value=" {{ com.text }}" >
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+            {% endfor %}
+        </div>
+        </div>
+    <form action="{{ path('AddCommentPropositionn') }}" method="post" >
+        <input name="text" class="form-control" type="text" placeholder="comment ..." style="width: 30%"><br>
+        <input name="id" value="{{ propcom.idProposition }}" type="text" hidden="hidden" placeholder="comment"><br>
+        <input type="submit" class="btn btn-responsive button-alignment btn-info" value="commenter">
+    </form>
+
+{% endblock %}

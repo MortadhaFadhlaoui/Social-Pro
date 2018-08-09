@@ -1,0 +1,145 @@
+{% extends"AdminBundle::admin.html.twig" %}
+{% block  content %}
+    <!-- Main content -->
+    <section class="content paddingleft_right15">
+        <div class="row">
+            <div class="panel panel-primary ">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
+                        Membres List
+                    </h4>
+                </div>
+                <br />
+                <div class="panel-body">
+                    <table class="table table-bordered " id="table">
+                        <thead>
+                        <tr class="filters">
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>
+                                User E-mail
+                            </th>
+                            <th>Status</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td>{{ equipe.IdProjet.ChefProjet.nom }}</td>
+                            <td>{{ equipe.IdProjet.ChefProjet.prenom }}</td>
+                            <td>
+                                {{ equipe.IdProjet.ChefProjet.email }}
+                            </td>
+                            <td>{{ equipe.IdProjet.ChefProjet.statut }}</td>
+                            <td>
+                                {{ equipe.IdProjet.ChefProjet.lastLogin|date }}
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                        {% for user in userss %}
+                            <tbody>
+
+                            <tr>
+                                <td>{{ user.nom }}</td>
+                                <td>{{ user.prenom }}</td>
+                                <td>
+                                    {{ user.email }}
+                                </td>
+                                <td>{{ user.statut }}</td>
+                                <td>
+                                    {{ user.lastLogin|date }}
+                                </td>
+                                <td>
+
+                                    <a href="{{ path('DeleteMembre',{'id':user.id,'eq':id}) }}">
+                                        <i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <!-- Modal for showing delete confirmation -->
+                            <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="user_delete_confirm_title">
+                                                Delete User
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure to delete this user? This operation is irreversible.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <a href="#" type="button" class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="livicon" data-name="doc-portrait" data-c="#fff" data-hc="#fff" data-size="18" data-loop="true"></i>
+                        Affectation membre
+                    </h3>
+                    <span class="pull-right">
+                      <i class="fa fa-fw fa-chevron-up clickable"></i>
+                      <i class="fa fa-fw fa-times removepanel clickable"></i>
+                    </span>
+                </div>
+                <div class="panel-body">
+                    <form action="{{ path('affecterUser',{ 'eq': id }) }}" class="form-horizontal" method="post">
+                        <div class="form-position">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group select2-bootstrap-prepend">
+                                        <span class="input-group-btn">
+
+
+                                        </button>
+                                        </span>
+                                        <select id="single-prepend-text" class="form-control select2" name="s1">
+                                            {% for user in luser %}
+                                                <option value="{{ user.id }}">{{ user.nom }} {{ user.prenom }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><br/><br/>
+                        <div class="form-body">
+                            <div class="form-group pad-top40">
+
+                            </div>
+
+                        </div>
+                        <div class="form-actions">
+                            <div class=" pull-top-right">
+                                <button type="submit" class="btn btn-primary">Affecter</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        <!-- row--> </section>
+
+{% endblock %}

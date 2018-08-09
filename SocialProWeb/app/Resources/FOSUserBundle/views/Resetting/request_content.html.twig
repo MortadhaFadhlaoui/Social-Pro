@@ -1,0 +1,22 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+
+    <h3 class="black_bg">
+        <img src="{{ asset('img/logo.png') }}" alt="josh logo">
+        <br>Reset Password</h3>
+
+    <p>
+        <label style="margin-bottom:0px;" for="username" class="uname"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+            {{ 'resetting.request.username'|trans }}
+        </label>
+        <input id="username" name="username" required type="text" placeholder="username or e-mail" />
+        {% if userr is defined %}
+            Verifier votre nom or e-mail {{ userr }} not existe
+        {% endif %}
+    </p>
+    <p class="login button">
+        <input type="submit" value="{{ 'resetting.request.submit'|trans }}" id="_submit" name="_submit" class="btn btn-success" />
+    </p>
+
+</form>

@@ -1,0 +1,14 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+{% block fos_user_content %}
+    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    <p class="change_link">
+        <a href="{{ path('profile_show') }}">
+            <button type="button" class="btn btn-responsive botton-alignment btn-warning btn-sm">Go To Profile</button>
+        </a>
+    </p>
+    {% if targetUrl %}
+    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    {% endif %}
+{% endblock fos_user_content %}

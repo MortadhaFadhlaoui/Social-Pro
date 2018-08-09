@@ -1,0 +1,48 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    {% if error %}
+        error
+    {% endif %}
+
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+
+        <h3 class="black_bg">
+            <img src="{{ asset('img/logo.png') }}" alt="josh logo">
+            <br>Log in</h3>
+
+        <p>
+            <label style="margin-bottom:0px;" for="username" class="uname"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+                E- mail or Username
+            </label>
+            <input id="username" name="_username" value="{{ last_username }}" required type="text" placeholder="username or e-mail" />
+        </p>
+
+        <p>
+            <label style="margin-bottom:0px;" for="password" class="youpasswd"> <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+                Password
+            </label>
+            <input id="password" name="_password" required type="password" placeholder="eg. X8df!90EO" />
+        </p>
+
+        <p class="keeplogin">
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+        </p>
+
+        <p class="login button">
+            <input type="submit" value="{{ 'security.login.submit'|trans }}" id="_submit" name="_submit" class="btn btn-success" />
+        </p>
+
+
+        <p class="change_link">
+            <a href="{{ path('fos_user_resetting_request') }}">
+                <button type="button" class="btn btn-responsive botton-alignment btn-warning btn-sm">Forgot password</button>
+            </a>
+        </p>
+    </form>
+{% endblock fos_user_content %}

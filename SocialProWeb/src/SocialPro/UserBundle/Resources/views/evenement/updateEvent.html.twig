@@ -1,0 +1,39 @@
+
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block content %}
+
+    <div class="container">
+    <div class="row">
+    <!-- Contact form Section Start -->
+    <div class="col-md-6">
+        <h2>Modifier un Evenement</h2>
+        <form  method="post" class="contact">
+            <div class="form-group">
+                <label for="nom"> Changez le nom de l'evenement </label>
+                {{ form_widget(form.nom, {'attr': {'placeholder': 'Renommez votre evénement','class': 'form-control input-lg'}}) }}
+            </div>
+            <div class="form-group">
+                <label for="date">changez la date de l'evenement </label>
+                {{ form_widget(form.date) }}
+            </div>
+            <div class="form-group">
+                <label for="nom"> Modifiez le lieu de l'evenement </label>
+                {{ form_widget(form.lieu, {'attr': {'placeholder': 'Changez le lieu de  votre evénement','class': 'form-control input-lg'}}) }}
+            </div>
+            <div class="form-group">
+                <label for="confidentialité">Confidentialité de l'evenement *</label>
+                {{ form_widget(form.confidentialite, {'attr': {'placeholder': 'Nommer votre evénement','class': 'form-control input-lg'}}) }}
+            </div>
+            <div class="form-group">
+                <label for="Type">Confidentialité de l'evenement *</label>
+                {{ form_widget(form.type, {'attr': {'placeholder': 'Nommer votre evénement','class': 'form-control input-lg'}}) }}
+            </div>
+            <div class="form-group">
+                <label for="nom"> Modifiez la description de l'evenement </label>
+                {{ form_widget(form.description, {'attr': {'placeholder': 'decrivez votre votre evénement','class': 'form-control input-lg'}}) }}
+            </div>
+            {{ form_end(form) }}
+        </form>
+    </div>
+    <!-- //Conatc Form Section End -->
+{% endblock %}

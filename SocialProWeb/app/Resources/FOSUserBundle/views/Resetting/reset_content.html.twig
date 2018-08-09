@@ -1,0 +1,22 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+<h3 class="black_bg">
+    <img src="{{ asset('img/logo.png') }}" alt="josh logo">
+    <br>Log in</h3>
+<p>
+    <label style="margin-bottom:0px;" for="password" class="youpasswd"> <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+        Ecrire votre mot de passe
+    </label>
+    {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Ecrire votre mot de passe','required' : 'true'}}) }}
+</p>
+<p>
+    <label style="margin-bottom:0px;" for="password" class="youpasswd"> <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+        Repete votre mot de passe
+    </label>
+    {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Repete votre mot de passe','required' : 'true'}}) }}
+</p>
+<p class="login button">
+    <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" id="_submit" name="_submit" class="btn btn-success" />
+</p>
+{{ form_end(form) }}

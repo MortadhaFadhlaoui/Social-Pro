@@ -1,0 +1,207 @@
+social_pro_user_homepage:
+    path:     /
+    defaults: { _controller: SocialProUserBundle:Default:index }
+home:
+    path:     /home
+    defaults: { _controller: SocialProUserBundle:Default:home }
+profile_show:
+    path:     /profile_show
+    defaults: { _controller: SocialProUserBundle:Profile:profile }
+tuto_autocomplete:
+    path:     /autocomplete
+    defaults: { _controller: SocialProUserBundle:Default:index }
+ajax_autocomplete:
+  path:  /ajax/autocomplete/update/data
+  defaults: { _controller: SocialProUserBundle:AjaxAutocomplete:updateData }
+
+
+
+UserProjets:
+    path:     /Projets
+    defaults: { _controller: SocialProUserBundle:Projet:projet }
+
+
+
+Covoiturage:
+    path:     /Covoiturage
+    defaults: { _controller: SocialProUserBundle:Covoiturage:list }
+
+Reserver:
+    path:     /Reserver/{id}
+    defaults: { _controller: SocialProUserBundle:Covoiturage:reserve }
+
+AjouterTrajet:
+    path:     /AjouterTrajet
+    defaults: { _controller: SocialProUserBundle:Covoiturage:add }
+
+MesTrajets:
+    path:     /MesTrajets
+    defaults: { _controller: SocialProUserBundle:Covoiturage:mine }
+
+SupprimerTrajet:
+    path:     /SupprimerTrajet/{id}
+    defaults: { _controller: SocialProUserBundle:Covoiturage:delete }
+
+ModifierTrajet:
+    path:     /ModifierTrajet/{id}
+    defaults: { _controller: SocialProUserBundle:Covoiturage:update }
+
+TrajetsPartant:
+    path:     /TrajetsPartant
+    defaults: { _controller: SocialProUserBundle:Covoiturage:going }
+
+AnnulerReservation:
+    path:     /AnnulerReservation/{id}
+    defaults: { _controller: SocialProUserBundle:Covoiturage:cancel }
+
+PartantAvecVous:
+    path:     /PartantsAvecVous/{id}
+    defaults: { _controller: SocialProUserBundle:Covoiturage:goingWithYou }
+Coviturage:
+    path:     /Coviturage/recherche
+    defaults: { _controller: SocialProUserBundle:Covoiturage:Coviturage }
+
+PDF3:
+    path:     /pdf
+    defaults: { _controller: SocialProUserBundle:Projet:pdf }
+
+
+
+
+ajoutEvent:
+    path:     /ajoutEvent
+    defaults: { _controller: SocialProUserBundle:Evenement:ajout }
+list_event:
+    path:     /affichEvent
+    defaults: { _controller: SocialProUserBundle:Evenement:affichage }
+rechercheEvent:
+    path: /rechercheEvent
+    defaults: { _controller: SocialProUserBundle:Evenement:recherche  }
+delete_event:
+    path:     /deletEvent/{id}
+    defaults: { _controller:  SocialProUserBundle:Evenement:delete }
+update_event:
+    path:     /updatEvent/{id}
+    defaults: { _controller:  SocialProUserBundle:Evenement:update }
+findInvit:
+    path: /findInvit
+    defaults: { _controller: SocialProUserBundle:Evenement:findInvit  }
+acceptInvit:
+    path: /acceptInvit/{id}
+    defaults: { _controller: SocialProUserBundle:Evenement:acceptInvit  }
+refusetInvit:
+    path: /refusetInvit/{id}
+    defaults: { _controller: SocialProUserBundle:Evenement:refusetInvit  }
+ajoutInvit:
+    path:     /ajoutInvit/{id}
+    defaults: { _controller: SocialProUserBundle:Evenement:ajoutInvit }
+validerInvit:
+    path: /validerInvit
+    defaults: { _controller: SocialProUserBundle:Evenement:validerInvit  }
+check_event:
+    path:     /updatEvent/{id}
+    defaults: { _controller:  SocialProUserBundle:Evenement:check }
+list_event_particip:
+    path:     /affichEventParticipation
+    defaults: { _controller: SocialProUserBundle:Evenement:affichageParticip }
+ajoutEventRating:
+    path:     /ajoutParticip/{id}
+    defaults: { _controller: SocialProUserBundle:Evenement:ajoutP }
+
+
+
+
+publication_new:
+    path:     /new
+    defaults: { _controller: SocialProUserBundle:Publication:new }
+publication_edit:
+    path:     /{idPublication}/edit
+    defaults: { _controller: SocialProUserBundle:Publication:edit }
+tache_new:
+    path:     /newTache
+    defaults: { _controller: "SocialProUserBundle:Tache:new" }
+    methods:  [GET, POST]
+
+tache_index:
+    path:     /Taches
+    defaults: { _controller: "SocialProUserBundle:Tache:index" }
+    methods:  GET
+tache_show:
+    path:     /{idTache}/show
+    defaults: { _controller: "SocialProUserBundle:Tache:show" }
+    methods:  GET
+tache_edit:
+    path:     /{idTache}/edit
+    defaults: { _controller: "SocialProUserBundle:Tache:edit" }
+    methods:  [GET, POST]
+tache_delete:
+    path:     /{idTache}/deleteTache
+    defaults: { _controller: "SocialProUserBundle:Tache:delete" }
+    methods:  DELETE
+
+
+
+propositionn:
+    path:     /list
+    defaults: { _controller: "SocialProUserBundle:Proposition:list"}
+votePourr:
+    path:     /votePour/{id}
+    defaults: { _controller: "SocialProUserBundle:Proposition:pour"}
+voteContree:
+    path:     /voteContre/{id}
+    defaults: { _controller: "SocialProUserBundle:Proposition:contre"}
+addPropositionn:
+    path:     /addProposition
+    defaults: { _controller: "SocialProUserBundle:Proposition:addProposition"}
+ListEventt:
+    path:     /events
+    defaults: { _controller: "SocialProUserBundle:Calendar:List"}
+DeletePropositionnn:
+    path:     /DeleteProposition/{id}
+    defaults: { _controller: "SocialProUserBundle:Proposition:DeleteProposition"}
+CommentPropositionnn:
+    path:     /CommentProposition/{id}
+    defaults: { _controller: "SocialProUserBundle:Proposition:CommentProposition"}
+AddCommentPropositionn:
+    path:     /AddComment
+    defaults: { _controller: "SocialProUserBundle:Proposition:AddComment"}
+
+
+
+groups:
+    path:     /groups
+    defaults: { _controller: SocialProUserBundle:Groups:groups }
+AfficheGroups:
+    path:     /AfficheGroups
+    defaults: { _controller: SocialProUserBundle:Groups:AfficheGroupe }
+ajax_autocomplete_countries:
+  path:  /ajax/autocomplete/search
+  defaults: { _controller: SocialProUserBundle:AjaxSearch:updateData }
+ajax_autocomplete_countries_owner:
+  path:  /ajax/autocomplete/search/owner
+  defaults: { _controller: SocialProUserBundle:AjaxSearch:updateDataOwner }
+ajax_sendnotif:
+  path:  /ajax/autocomplete/sendnotif
+  defaults: { _controller: SocialProUserBundle:AjaxSearch:sendNotif }
+ajax_accepternotif:
+  path:  /ajax/autocomplete/accepternotif
+  defaults: { _controller: SocialProUserBundle:AjaxSearch:accepterNotif }
+ajax_refusernotif:
+  path:  /ajax/autocomplete/refusernotif
+  defaults: { _controller: SocialProUserBundle:AjaxSearch:refuserNotif }
+Affiche_Group:
+    path:     /Affiche_Group/{id}
+    defaults: { _controller: SocialProUserBundle:Groups:Affiche_Group }
+Delete_Group:
+    path:     /Delete_Group/{id}
+    defaults: { _controller: SocialProUserBundle:Groups:Delete_Group }
+useronline:
+    path:     /useronline/user
+    defaults: { _controller: SocialProUserBundle:Default:whoIsOnline }
+search_groups:
+    path:     /searchgroups/ajax
+    defaults: { _controller: SocialProUserBundle:Groups:searchgroups }
+download_route:
+    path:  /download/{filename}
+    defaults: { _controller: SocialProUserBundle:Groups:download }
+

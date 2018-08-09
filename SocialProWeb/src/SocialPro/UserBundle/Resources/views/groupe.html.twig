@@ -1,0 +1,193 @@
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block  content %}
+    <!--- responsive model -->
+    <div class="modal fade in" id="responsive" tabindex="-1" role="dialog" aria-hidden="false" style="display:none;">
+        {{ form_start(form) }}
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Update Votre Groupe</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="margin-bottom:0px;" for="username" class="uname"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+                                Nom de groupe
+                            </label>
+                            {{ form_widget(form.nom, {'attr': {'class': 'form-control required'}}) }}
+                            <label style="margin-bottom:0px;" for="username" class="uname"> <i class="livicon" data-name="address-book" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+                                Description
+                            </label>
+                            {{ form_widget(form.description, {'attr': {'class': 'form-control required'}}) }}
+                            <label style="margin-bottom:0px;" for="username" class="uname"> <i class="livicon" data-name="image" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+                                Image
+                            </label>
+                            {{ form_errors(form.imageFile) }}
+                            {{ form_widget(form.imageFile) }}
+
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Inviter des amis</h4>
+                            <input id="contgroupe" name="contgroupe" type="number" value="0" hidden="true">
+                            <div id="list" name="list">
+                            </div>
+                            <div id="usersinvit"></div>
+
+                                <div id="search"  style="margin-bottom: -60px;margin-left: 10px;">
+                                    <input type="text" id="searchfield" class="searchfieldowner"/>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn">Close</button>
+                    <button type="submit" class="btn btn-primary">Update Group</button>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+    <!-- END modal-->
+    <section class="content" style="margin-bottom: -150px;">
+        <div  class="row ">
+            <div class="col-md-12">
+                <div class="row ">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="text-center">
+                                {% if groupe.imageName == null %}
+                                    <img src="{{ asset('img/authors/la-parole-de-social-de-gens-de-rseau-de-medias-de-groupe-de-bulles-10346593.jpg') }}" class="img-responsive" width="366px" height="218px" />
+
+                                {% else %}
+                                    <img src="{{app.request.basepath}}/img/authors/{{ groupe.imageName }}" class="img-responsive" alt="" width="366px" height="218px" />
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="table-responsive">
+                            <table class="table  table-striped" id="users">
+                                <tr>
+                                    <td>
+                                        {{ groupe.nom }}
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Gerer par</td>
+                                    <td>
+                                            {{ groupe.owner.username }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ce groupe est crée le</td>
+                                    <td>
+                                            {{ groupe.dateCreation|date }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {{ groupe.description }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-8" style="width: 150px;">
+                    {% if groupe.owner == user %}
+                        <div class="pull-right">
+                            <a class="btn btn-success btn-large" href="{{ path('Delete_Group',{'id':groupe.idGroupe}) }}"><i class="livicon" data-name="minus-alt" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>Delete groupe</a>
+                        </div><br><br><br>
+                        <div class="pull-right">
+                            <a class="btn btn-success btn-large" data-toggle="modal" data-href="#responsive" href="#responsive"><i class="livicon" data-name="pencil" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>Update groupe</a>
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <div class="wrapper">
+        <div class="containerr">
+            <div class="left">
+                    <div class="row ">
+                        <div class="panel colr-hed">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Friends</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="mag img-responsive">
+                                        <br />
+                                        {% if users is defined %}
+                                            {% for user in users %}
+                                                {% for pro in profiles %}
+                                                    {% if user.id == pro.iduser.id %}
+                                                        {% if pro.imageName is not null %}
+                                                            <img data-toggle="magnify" class="thumbnail img-responsive" src="{{app.request.basepath}}/img/authors/{{ pro.imageName }}" alt="">
+                                                        {% else %}
+                                                            <img data-toggle="magnify" class="thumbnail img-responsive" src="{{ asset('img/authors/user-avatar-placeholder.png') }}" alt="">
+                                                        {% endif %}
+                                                    {% endif %}
+
+                                                {% endfor %}
+
+                                                <span class="name">{{ user.getUsername }}</span>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="right" data-groupe="{{ groupe.idGroupe }}">
+                 <div class="chat" data-chat="person2">
+
+                     {% for message in Messagegroupee %}
+                         <div class="conversation-start">
+                             <span>{{ message.dateEnvoie|date }}</span>
+                         </div>
+                         {% if user.id == message.idEmetteur.id %}
+                                     <strong>{{ user.username }} uploded this file</strong>
+                                     <a class="bubble me" href="{{ path('download_route',{'filename':message.imageName}) }}">{{ message.imageName }}</a>
+                         {% endif %}
+                             {% if users is defined %}
+                             {% for use in users %}
+                                 {% if use.id == message.idEmetteur.id %}
+                                     <strong>{{ use.username }} uploded this file</strong>
+                                     <a class="bubble you" href="{{ path('download_route',{'filename':message.imageName}) }}">{{ message.imageName }}</a>
+                                 {% endif %}
+                             {% endfor %}
+                             {% endif %}
+                     {% endfor %}
+                     {#   <div class="conversation-start">
+                            <span>Today, 5:38 PM</span>
+                        </div>
+                        <div class="bubble you">
+                            Hello, can you hear me?
+                        </div>
+                        <div class="bubble me">
+                            ... about who we used to be.
+                        </div>
+                        href="{{ path('upload_file',{'id':groupe.idGroupe}) }}" class="getgroupe"
+                        #}
+                 </div>
+
+                <div class="write">
+                    {{ form_start(formMessage) }}
+                    <input type="image"  src="{{ asset('img/authors/fc32f922.png') }}" style="
+    padding-left: 300px;
+    padding-top: 15px;
+    margin-left: 20px;
+    margin-top: -20px;
+" alt="Submit" />
+                    {{ form_end(formMessage) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

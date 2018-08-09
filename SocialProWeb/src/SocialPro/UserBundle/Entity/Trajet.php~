@@ -1,0 +1,71 @@
+<?php
+
+namespace SocialPro\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Trajet
+ *
+ * @ORM\Table(name="trajet", indexes={@ORM\Index(name="idUser", columns={"id_user_trajet"})})
+ * @ORM\Entity
+ */
+class Trajet
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_trajet", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idTrajet;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="depart", type="text", length=65535, nullable=false)
+     */
+    private $depart;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="arrive", type="text", length=65535, nullable=false)
+     */
+    private $arrive;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date", nullable=false)
+     */
+    private $date;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="heure", type="time", nullable=false)
+     */
+    private $heure;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nombre_place", type="integer", nullable=false)
+     */
+    private $nombrePlace;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_user_trajet", referencedColumnName="id")
+     * })
+     */
+    private $idUserTrajet;
+
+
+}
+

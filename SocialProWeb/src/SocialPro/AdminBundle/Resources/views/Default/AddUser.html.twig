@@ -1,0 +1,81 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends"AdminBundle::admin.html.twig" %}
+{% block content %}
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <i class="livicon" data-name="user-add" data-size="18" data-c="#fff" data-hc="#fff" data-loop="true"></i>
+                            Add New User
+                        </h3>
+                        <span class="pull-right clickable">
+                                    <i class="glyphicon glyphicon-chevron-up"></i>
+                                </span>
+                    </div>
+                    <div class="panel-body">
+                        <!--main content-->
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <!-- BEGIN FORM WIZARD WITH VALIDATION -->
+                                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-wizard'}}) }}
+                                    <h1>User Profile</h1>
+                                    <section>
+                                        <h2 class="hidden">&nbsp;</h2>
+                                        <div class="form-group">
+                                            <label for="userName">User Name *</label>
+                                            {{ form_widget(form.username, {'attr': {'placeholder': 'Enter your name','class': 'form-control required'}}) }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password *</label>
+                                            {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Enter your password','class': 'form-control required'}}) }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirm">Confirm Password *</label>
+                                            {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Confirm your password','class': 'form-control required'}}) }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email *</label>
+                                            {{ form_widget(form.email, {'attr': {'placeholder': 'Enter your Email','class' : 'form-control required email'}}) }}
+                                        </div>
+                                    </section>
+                                    <h1>Profile Details</h1>
+                                    <section>
+                                        <h2 class="hidden">&nbsp;</h2>
+                                        <div class="form-group">
+                                            <label for="name">First Name *</label>
+                                            {{ form_widget(form.nom, {'attr': {'placeholder': 'Enter your First name','class': 'form-control required'}}) }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="surname">Last Name *</label>
+                                            {{ form_widget(form.prenom, {'attr': {'placeholder': 'Enter your Last name','class': 'form-control required'}}) }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="cin">CIN</label>
+                                            {{ form_widget(form.cin, {'attr': {'placeholder': 'CIN','class': 'form-control required'}}) }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email">Role</label>
+                                            {{ form_widget(form.roles, {'attr': {'class': 'form-control required'}}) }}
+                                        </div>
+                                        <p class="form-group">
+                                            <input type="submit" class="btn btn-success" value="{{ 'registration.submit'|trans }}" />
+                                        </p>
+                                    </section>
+                                {{ form_end(form) }}
+                                <!-- END FORM WIZARD WITH VALIDATION -->
+                            </div>
+                        </div>
+                        <!--main content end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--row end-->
+    </section>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block  content %}
+
+<div class="container">
+    <div class="row">
+
+        <!-- Contact form Section Start -->
+        <div class="col-md-6">
+
+            <form  method="post" id="editForm" class="contact">
+                <fieldset>
+
+                    <legend>  <i class="livicon icon1" data-name="gears" data-size="55" data-loop="true" data-c="#418bca" data-hc="#418bca"></i>Modifier Une Tache </legend>
+                    <div class="form-group">
+                        {{ form_errors(edit_form) }}
+
+
+                        <font color="#40A497" SIZE="3">Nom </font></a>
+                        {{ form_widget(edit_form.nom, {'attr': {'placeholder': 'Nommer votre tache','class': 'form-control input-lg'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        <font color="#40A497" SIZE="3">Description</font></a>
+
+                        {{ form_widget(edit_form.description, {'attr': {'placeholder': 'Donner une Description','class': 'form-control input-lg'}}) }}
+                    </div>
+                    <div class="form-group">
+                        <font color="#40A497" SIZE="3">Complexite </font></a>
+
+                        {{ form_widget(edit_form.complexite, {'attr': {'placeholder': 'Nommer votre complexite','class': 'form-control input-lg'}}) }}
+                    </div>
+                    <div class="form-group">
+                        <font color="#40A497" SIZE="3">Responsable Tache</font></a>
+                        {{ form_widget(edit_form.idUser, {'attr': {'placeholder': 'Nommer votre evénement','class': 'form-control input-lg'}}) }}
+                    </div>
+
+                    <div>
+                        <input type="submit" value="Modifier"  href="{{ path('tache_index') }}"  class="btn btn-responsive button-alignment btn-success"/>
+                    </div>
+
+
+                    <div></div>
+
+
+
+                    {{ form_end(edit_form) }}
+                </fieldset>
+            </form>
+
+            <ul>
+                <br>
+                </br>
+                <li>
+
+                    {{ form_start(delete_form) }}
+                    <td>
+
+                        <a href="" class="tooltip-test" data-placement="top" title="" data-original-title="Supprimer"  data-toggle="modal" data-target="#deleteModal{{ tache.idTache }}"><button type="button" class="btn btn-outline btn-success">Supprimer</button></a>
+                        <div class="modal fade" id="deleteModal{{ tache.idTache }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title">Comfirmation de suppression :</h4>
+                                    </div>
+                                    <div class="modal-body" >
+                                        <p><span>Voulez-vous vraiment supprimer <a href="#">{{ tache.nom }}</a> ? </span></p>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default " data-dismiss="modal">Annuler</button>
+                                        <input type="submit" value="Supprimer"  href="{{ path('tache_index') }}" class="btn btn-responsive button-alignment btn-danger">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </td>
+
+
+                        {{ form_end(delete_form) }}
+                </li>
+                <br>
+                </br>
+                <li>
+                    <a  href="{{ path('tache_index') }}"><button type="button" class="btn btn-responsive button-alignment btn-warning" >Retour</button></a>
+
+
+                </li>
+
+
+            </ul>
+
+        </div>
+        <!-- //Conatc Form Section End -->
+{% endblock %}

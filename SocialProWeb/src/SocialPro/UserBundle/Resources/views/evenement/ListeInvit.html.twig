@@ -1,0 +1,38 @@
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block content %}
+
+
+    <div class="row">
+
+        <!-- Testimonial Section -->
+        <div class="text-center">
+            <h3 class="border-success"><span class="heading_border bg-success">Les Invitations</span></h3>
+        </div>
+        {% for invitation in invitations %}
+            <div class="col-md-4">
+                <div class="author">
+
+                    <p class="text-right">
+                        invitation  : {{ invitation.idInvitation }}
+                        <br>
+
+                    </p>
+                    <p>
+                        <label> Description : <br><br> {{ invitation.contenu }} </label>
+                        <br><br>
+
+                         <a href="{{ path('acceptInvit', {'id':invitation.idInvitation}) }}" ><input type="button"  name="participer "value="participer" class="btn btn-responsive button-alignment btn-success" /></a>
+                        <a href="{{ path('refusetInvit', {'id':invitation.idInvitation}) }}" ><input type="button"  name="refuser "value="refuser" class="btn btn-responsive button-alignment btn-primary" /></a>
+
+                        <br>
+                        <br>
+                        <br>
+                    </p>
+                </div>
+
+            </div>
+
+        {% endfor %}
+        <!-- Testimonial Section End -->
+    </div>
+{% endblock %}

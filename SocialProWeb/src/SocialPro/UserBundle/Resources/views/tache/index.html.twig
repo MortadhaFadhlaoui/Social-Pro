@@ -1,0 +1,46 @@
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block  content %}
+
+    <div class="text-center">
+        <h3 class="border-success"><span class="heading_border bg-success">Liste Des Taches</span></h3>
+    </div>
+    <table class="table" border="1" >
+        <thead>
+            <tr>
+
+                <th>Id Tache</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Complexite</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody >
+        {% for tache in taches %}
+            <tr>
+                <td><a href="{{ path('tache_show', { 'idTache': tache.idTache }) }}">{{ tache.idTache }}</a></td>
+                <td>{{ tache.nom }}</td>
+                <td>{{ tache.description }}</td>
+                <td>{{ tache.complexite }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tache_show', { 'idTache': tache.idTache }) }}"><button type="button" class="btn btn-responsive button-alignment btn-warning" >Afficher</button></a>
+                        </li>
+
+                        <li>
+                            <a href="{{ path('tache_edit', { 'idTache': tache.idTache }) }}"><button type="button" class="btn btn-responsive button-alignment btn-default" >Modifier</button></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tache_new') }}"><button type="button" class="btn btn-responsive button-alignment btn-success" >Ajouter Une Tâche</button></a>
+        </li>
+    </ul>
+{% endblock %}

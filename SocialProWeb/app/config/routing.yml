@@ -1,0 +1,40 @@
+social_pro_chef:
+    resource: "@SocialProChefBundle/Resources/config/routing.yml"
+    prefix:   /chef
+
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+social_pro_admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+social_pro_user:
+    resource: "@SocialProUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+belousovr:
+    resource: "@belousovChatBundle/Controller"
+    type:     annotation

@@ -1,0 +1,89 @@
+social_pro_admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Default:index }
+users:
+    path:     /users
+    defaults: { _controller: AdminBundle:Default:users }
+DeleteUser:
+    path:     /DeleteUser/{id}
+    defaults: { _controller: AdminBundle:Default:DeleteUser }
+
+
+Projets:
+    path:     /Projets
+    defaults: { _controller: AdminBundle:Projet:projet }
+
+Supprimer:
+    path:     /Supprimer/{id}
+    defaults: { _controller: AdminBundle:Projet:delete }
+
+Modifier:
+    path:     /Modifier/{id}
+    defaults: { _controller: AdminBundle:Projet:update }
+
+Ajouter:
+    path:     /Ajouter
+    defaults: { _controller: AdminBundle:Projet:add }
+
+grapheHistogramme:
+    path: /ProjetStatistique
+    defaults: { _controller: AdminBundle:Projet:chartHistogramme}
+
+PDF1:
+    path:     /pdf
+    defaults: { _controller: AdminBundle:Projet:pdf }
+
+Events:
+    path:     /Events
+    defaults: { _controller: AdminBundle:Default:Events }
+showEvent:
+    path:     /showEvent/{id}
+    defaults: { _controller: AdminBundle:Default:findEvent }
+graphepie:
+     path:     /graphe
+     defaults: { _controller: AdminBundle:Default:chartPie }
+
+
+
+equipe:
+    path:     /equipe/{id}
+    defaults: { _controller: AdminBundle:Equipe:list}
+affecterUser:
+    path:     /affecte/{eq}
+    defaults: { _controller: AdminBundle:Equipe:affecte}
+proposition:
+    path:     /list
+    defaults: { _controller: AdminBundle:Proposition:list}
+votePour:
+    path:     /votePour/{id}
+    defaults: { _controller: AdminBundle:Proposition:pour}
+voteContre:
+    path:     /voteContre/{id}
+    defaults: { _controller: AdminBundle:Proposition:contre}
+addProposition:
+    path:     /addProposition
+    defaults: { _controller: AdminBundle:Proposition:addProposition}
+DeleteMembre:
+    path:     /DeleteMembre/{id}/{eq}
+    defaults: { _controller: AdminBundle:Equipe:DeleteMembre}
+ListEvent:
+    path:     /events
+    defaults: { _controller: AdminBundle:Calendar:List}
+propositionStat:
+    path:     /statistique
+    defaults: { _controller: AdminBundle:Graphe:stat}
+print:
+    path:     /print
+    defaults: { _controller: AdminBundle:Proposition:pdf}
+skillUser:
+    path:     /skill
+    defaults: { _controller: AdminBundle:Equipe:skill}
+DeleteProposition:
+    path:     /DeleteProposition/{id}
+    defaults: { _controller: AdminBundle:Proposition:DeleteProposition}
+CommentProposition:
+    path:     /CommentProposition/{id}
+    defaults: { _controller: AdminBundle:Proposition:CommentProposition}
+AddCommentProposition:
+    path:     /AddComment
+    defaults: { _controller: AdminBundle:Proposition:AddComment}

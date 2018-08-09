@@ -1,0 +1,41 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends "FOSUserBundle:ChangePassword:change_password.html.twig" %}
+{% block here %}
+{{ form_start(f, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+    <aside class="right-side" style="background-color: #ebebeb">
+        <div class="row">
+            <div class="col-md-12 pd-top">
+                <div class="form-body">
+                    <div class="form-group">
+                        <label for="inputpassword" class="col-md-3 control-label">
+                            Nom d'utilisateur
+                            <span class='require'>*</span>
+                        </label>
+                        {{ form_widget(f.username, {'attr': {'class': 'form-control required'}}) }}
+
+                    </div>
+                    <div class="form-group">
+                        <label for="inputpassword" class="col-md-3 control-label">
+                            Adresse e-mail
+                            <span class='require'>*</span>
+                        </label>
+                        {{ form_widget(f.email, {'attr': {'class': 'form-control required'}}) }}
+                    </div>
+                    <div class="form-group">
+                        <label for="inputnumber" class="col-md-3 control-label">
+                            Mot de passe actuel
+                            <span class='require'>*</span>
+                        </label>
+                        {{ form_widget(f.current_password, {'attr': {'placeholder': 'Votre mot password actuel','class': 'form-control required'}}) }}
+                    </div>
+
+                </div>
+                <div class="col-md-offset-3 col-md-9">
+                    <input type="submit" class="btn btn-primary" value="{{ 'profile.edit.submit'|trans }}" />
+                    <a href="{{ path('fos_user_profile_show') }}" class="btn btn-danger">Cancel</a>&nbsp;
+                </div>
+            </div>
+        </div>
+    </aside>
+{{ form_end(f) }}
+{% endblock %}

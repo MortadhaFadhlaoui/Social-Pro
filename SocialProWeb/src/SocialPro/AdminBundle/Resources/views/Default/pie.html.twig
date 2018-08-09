@@ -1,0 +1,32 @@
+{% extends"AdminBundle::admin.html.twig" %}
+{% block  content %}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+        type="text/javascript"></script>
+<script src="//code.highcharts.com/4.0.1/highcharts.js"></script>
+<script src="//code.highcharts.com/4.0.1/modules/exporting.js"></script>
+<script type="text/javascript">
+
+    {{ chart(chart) }}
+
+</script>
+    <div class="col-lg-6">
+        <!-- Basic charts strats here-->
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="livicon" data-name="barchart" data-size="18" data-c="#fff" data-hc="#fff" data-loop="true"></i>
+
+                </h4>
+                <span class="pull-right">
+                                    <i class="fa fa-fw fa-chevron-up clickable"></i>
+                                    <i class="fa fa-fw fa-times removepanel clickable"></i>
+                                </span>
+            </div>
+            <div class="panel-body">
+                <div id="piechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,174 @@
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block  content %}
+    <aside class="right-side" style="background-color: #ebebeb">
+        <section class="content-header">
+            <h1>
+                User Profile
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="#">
+                        <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>Users</li>
+                <li class="active">
+                    User Profile
+                </li>
+            </ol>
+        </section>
+        <section class="content">
+            <div  class="row ">
+                <div class="col-md-12">
+                    <div class="row ">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="text-center">
+                                    {% if profile.imageName == null %}
+                                        <img src="{{ asset('img/authors/user-avatar-placeholder.png') }}" class="img-responsive" width="366px" height="218px" />
+                                    {% else %}
+                                        <img src="{{app.request.basepath}}/img/authors/{{ profile.imageName }}" class="img-responsive" alt="" width="366px" height="218px" />
+                                    {% endif %}
+                                </div>
+                                                      </div>
+                            <div class="table-responsive">
+                                <table class="table  table-striped" id="users">
+
+                                    <tr>
+                                        <td>Nationalite</td>
+                                        <td>
+                                            {% if profile is defined %}
+                                                {{ profile.nationalite }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lieux De Naissance</td>
+                                        <td>
+                                            {% if profile is defined %}
+                                                {{ profile.lieux }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date De Naissance</td>
+                                        <td>
+                                            {% if profile is defined %}
+                                                {{ profile.datenaissance|date }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Details</td>
+                                        <td>
+                                            {% if profile is defined %}
+                                                {{ profile.details }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sexe</td>
+                                        <td>
+                                            {% if profile is defined %}
+                                                {{ profile.sexe }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="col-md-8">
+                            <ul class="nav nav-tabs ul-edit responsive">
+                                <li class="active">
+                                    <a href="#tab-activity" data-toggle="tab">
+                                        <i class="livicon" data-name="comments" data-size="16" data-c="#01BC8C" data-hc="#01BC8C" data-loop="true"></i> Activity
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#tab-messages" data-toggle="tab">
+                                        <i class="livicon" data-name="mail" data-size="16" data-c="#01BC8C" data-hc="#01BC8C" data-loop="true"></i> Messages
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab-change-details" data-toggle="tab">
+                                        <i class="livicon" data-name="address-book" data-size="16" data-c="#01BC8C" data-hc="#01BC8C" data-loop="true"></i> Change Details
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tab-activity" class="tab-pane fade in active">
+                                </div>
+
+                                <div id="tab-change-details" class="tab-pane fade">
+                                    <div class="row">
+                                        <div class="col-md-12 pd-top">
+
+                                                <div class="form-body">
+                                                     <div class="table-responsive">
+                                                         {{ form_start(form) }}
+                                          <table class="table  table-striped" id="users">
+                                              <tr>
+                                                  <td>Nationalite</td>
+                                                  <td>
+                                                      {{ form_widget(form.nationalite, {'attr': {'class': 'form-control required'}}) }}
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>Lieux De Naissance</td>
+                                                  <td>
+                                                      {{ form_widget(form.lieux, {'attr': {'class': 'form-control required'}}) }}
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>Date De Naissance</td>
+                                                  <td>
+                                                      {{ form_widget(form.datenaissance, {'attr': {'max': date|date('Y-m-d')}}) }}
+
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>Details</td>
+                                                  <td>
+                                                      {{ form_widget(form.details) }}
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>Sexe</td>
+                                                  <td>
+                                                      {{ form_widget(form.sexe,{'attr':{'class': 'form-control required'}}) }}
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>Picture</td>
+                                                  <td>
+                                                      {{ form_errors(form.imageFile) }}
+                                                      {{ form_widget(form.imageFile) }}
+                                                  </td>
+                                              </tr>
+                                          </table>
+                                                         <div class="col-md-offset-3 col-md-9">
+                                                             <input type="submit" class="btn btn-primary" value="{{ 'Submit'|trans }}" />
+                                                             <a href="{{ path('fos_user_profile_show') }}" class="btn btn-danger">Cancel</a>
+                                                             &nbsp;
+                                                         </div>
+                                                         {{ form_end(form) }}
+                                      </div>
+                                                </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab-messages" class="tab-pane fade in">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </aside>
+{% endblock %}

@@ -1,0 +1,167 @@
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block  content %}
+    <div id="search" style="margin-bottom: 473px;margin-left: 100px;">
+        <input type="text" id="searchfield" class="searchgroups"/>
+    </div>
+    <div class="pull-right">
+        <a class="btn btn-success btn-large" data-toggle="modal" data-href="#responsive" href="#responsive"><i class="livicon" data-name="plus-alt" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>Ajouter un groupe</a>
+    </div>
+
+    <!-- Container Section Start -->
+    <div class="container">
+        <!--- responsive model -->
+        <div class="modal fade in" id="responsive" tabindex="-1" role="dialog" aria-hidden="false" style="display:none;">
+            {{ form_start(form) }}
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Ajouter Votre Groupe</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label style="margin-bottom:0px;" for="username" class="uname"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+                                    Nom de groupe
+                                </label>
+                                {{ form_widget(form.nom, {'attr': {'class': 'form-control required'}}) }}
+                                <label style="margin-bottom:0px;" for="username" class="uname"> <i class="livicon" data-name="address-book" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+                                    Description
+                                </label>
+                                {{ form_widget(form.description, {'attr': {'class': 'form-control required'}}) }}
+                                <label style="margin-bottom:0px;" for="username" class="uname"> <i class="livicon" data-name="image" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
+                                    Image
+                                </label>
+                                {{ form_errors(form.imageFile) }}
+                                {{ form_widget(form.imageFile) }}
+
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Inviter des amis</h4>
+                                <input id="cont" name="cont" type="number" value="0" hidden="true">
+                                <div id="list" name="list">
+
+                                </div>
+                                <div id="usersinvit"></div>
+                                <div id="search" style="margin-bottom: -60px;margin-left: 10px;">
+                                    <input type="text" id="searchfield" class="searchfielddd"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn">Close</button>
+                        <button id="setnotification" type="submit" class="btn btn-primary">Create Group</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+        <!-- END modal-->
+        <section class="content">
+            <div class="matchgroupesgere"></div>
+            <div class="matchvosgroupes"></div>
+            <div class="row" style="margin-top: 60px;" id="vosgroupespanel">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <i class="livicon" data-name="rocket" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
+                                <strong>Vos groupes</strong>
+                            </h3>
+                            <span class="pull-right clickable">
+                                    <i class="glyphicon glyphicon-chevron-up"></i>
+                                </span>
+                        </div>
+                        <div class="panel-body modal-panel" >
+                            {% for group in groupes %}
+                            <div id="tab-activity" class="tab-pane fade in active">
+                                <div class="tab-content">
+                                    <div class="activity">
+                                        <div class="imgs-profile">
+                                            <a class="pull-left" href="{{ path('Affiche_Group',{'id':group[0].idGroupe}) }}">
+                                                {% if group[0].imageName == null %}
+                                                    <img data-toggle="magnify" class="media-object img-circle" src="{{ asset('img/authors/la-parole-de-social-de-gens-de-rseau-de-medias-de-groupe-de-bulles-10346593.jpg') }}"  alt=""/>
+
+                                                {% else %}
+                                                    <img data-toggle="magnify" class="media-object img-circle" src="{{app.request.basepath}}/img/authors/{{ group[0].imageName }}"  alt=""/>
+                                                {% endif %}
+                                            </a>
+                                            <div class="media-body">
+                                                <strong><a href="{{ path('Affiche_Group',{'id':group[0].idGroupe}) }}">{{ group[0].nom }}</a></strong>
+                                                <br>
+                                                <small class="text-muted">
+                                                    created at {{ group[0].dateCreation|date('Y-m-d') }}
+                                                </small>
+                                                <p>
+                                                    {{ group[0].description }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- media -->
+
+
+                                        <!-- media --> </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--- end modals-->
+            <div class="row" id="groupesvosgerepanel">
+                <div class="col-md-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <i class="livicon" data-name="piechart" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
+                                <strong>Groupes que vous gérez</strong>
+                            </h3>
+                            <span class="pull-right clickable">
+                                    <i class="glyphicon glyphicon-chevron-up"></i>
+                                </span>
+                        </div>
+                        <div class="panel-body" >
+                            {% for group in groupesOwner %}
+                                <div id="tab-activity" class="tab-pane fade in active">
+                                    <div class="tab-content">
+                                        <div class="activity">
+                                            <div class="imgs-profile">
+                                                <a class="pull-left" href="{{ path('Affiche_Group',{'id':group.idGroupe}) }}">
+                                                    {% if group.imageName == null %}
+                                                        <img data-toggle="magnify" class="media-object img-circle" src="{{ asset('img/authors/la-parole-de-social-de-gens-de-rseau-de-medias-de-groupe-de-bulles-10346593.jpg') }}"  alt=""/>
+
+                                                    {% else %}
+                                                        <img data-toggle="magnify" class="media-object img-circle" src="{{app.request.basepath}}/img/authors/{{ group.imageName }}"  alt=""/>
+                                                    {% endif %}
+                                                </a>
+                                                <div class="media-body">
+                                                    <strong><a href="{{ path('Affiche_Group',{'id':group.idGroupe}) }}">{{ group.nom }}</a></strong>
+                                                    <br>
+                                                    <small class="text-muted">
+                                                        created at {{ group.dateCreation|date('Y-m-d') }}
+                                                    </small>
+                                                    <p>
+                                                        {{ group.description }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!-- media -->
+
+
+                                            <!-- media --> </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END modal-->
+        </section>
+        <!--Content Section Start -->
+        <!-- //Content Section End -->
+    </div>
+    <!-- //Container Section End -->
+{% endblock %}

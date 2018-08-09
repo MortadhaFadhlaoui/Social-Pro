@@ -1,0 +1,423 @@
+<html>
+<head>
+    {% block head %}
+
+        <meta charset="UTF-8">
+        <title>Blank Page | Josh Admin Template</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- global css -->
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+        <!-- font Awesome -->
+        <link href="{{ asset('vendors/font-awesome-4.2.0/css/font-awesome.min.css') }}" rel="stylesheet"
+              type="text/css"/>
+        <link href="{{ asset('css/styles/black.css') }}" rel="stylesheet" type="text/css" id="colorscheme"/>
+        <link href="{{ asset('css/panel.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('css/metisMenu.css') }}" rel="stylesheet" type="text/css"/>
+
+        <!-- end of global css -->
+        <!--page level css -->
+        <link rel="stylesheet" href="{{ asset('vendors/wizard/jquery-steps/css/wizard.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendors/wizard/jquery-steps/css/jquery.steps.css') }}">
+        <link href="{{ asset('vendors/fullcalendar/css/fullcalendar.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('css/pages/calendar_custom.css') }}" rel="stylesheet" type="text/css"/>
+        <!--end of page level css-->
+        {% block stylesheet %}
+        {% endblock %}
+    {% endblock %}
+
+</head>
+<body class="skin-josh">
+<header class="header">
+    <a href="index.html" class="logo">
+        <img src="{{ asset('img/logo.png') }}" alt="logo">
+    </a>
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <div>
+            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                <div class="responsive_nav"></div>
+            </a>
+        </div>
+        <div class="navbar-right">
+            <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img data-src="holder.js/35x35/#fff:#000" width="35" class="img-circle img-responsive pull-left"
+                             height="35" alt="riot">
+                        <div class="riot">
+                            <div>
+                                Riot
+                                <span>
+                                        <i class="caret"></i>
+                                    </span>
+                            </div>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header bg-light-blue">
+                            <img data-src="holder.js/90x90/#fff:#000" class="img-responsive img-circle"
+                                 alt="User Image">
+                            <p class="topprofiletext">Riot Zeast</p>
+                        </li>
+                        <!-- Menu Body -->
+                        <li>
+                            <a href="{{ path('profile_show') }}">
+                                <i class="livicon" data-name="user" data-s="18"></i>
+                                My Profile
+                            </a>
+                        </li>
+                        <li role="presentation"></li>
+                        <li>
+                            <a href="{{ path('fos_user_change_password') }}">
+                                <i class="livicon" data-name="gears" data-s="18"></i>
+                                Account Settings
+                            </a>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="lockscreen.html">
+                                    <i class="livicon" data-name="lock" data-s="18"></i>
+                                    Lock
+                                </a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    <i class="livicon" data-name="sign-out" data-s="18"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="wrapper row-offcanvas row-offcanvas-left">
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="left-side sidebar-offcanvas">
+        <section class="sidebar ">
+            <div class="page-sidebar  sidebar-nav">
+
+                <div class="clearfix"></div>
+                <!-- BEGIN SIDEBAR MENU -->
+                <ul id="menu" class="page-sidebar-menu">
+                    <li class="active">
+                        <a href="index.html">
+                            <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA"
+                               data-loop="true"></i>
+                            <span class="title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c"
+                               data-loop="true"></i>
+                            <span class="title">Signalisation</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="form_builder.html">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Commentaire
+                                </a>
+                            </li>
+                            <li>
+                                <a href="form_builder2.html">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Publication
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="livicon" data-name="barchart" data-size="18" data-c="#00bc8c" data-hc="#00bc8c"
+                               data-loop="true"></i>
+                            <span class="title">Statistique</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="charts.html">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Flot Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a href="piecharts.html">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Pie Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a href="charts_animation.html">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Animated Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a href="jscharts.html">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    JS Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a href="sparklinecharts.html">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Sparkline Charts
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="livicon" data-name="users" data-size="18" data-c="#00bc8c" data-hc="#00bc8c"
+                               data-loop="true"></i>
+                            <span class="title">Users</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{ path('users') }}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Users
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_registration_register') }}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Add New User
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="livicon" data-name="users" data-size="18" data-c="#00bc8c" data-hc="#00bc8c"
+                               data-loop="true"></i>
+                            <span class="title">Equipe</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{ path('equipe',{'id':1}) }}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Membre equipes
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="livicon" data-name="users" data-size="18" data-c="#00bc8c" data-hc="#00bc8c"
+                               data-loop="true"></i>
+                            <span class="title">Proposition</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{ path('proposition') }}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    List Propositions
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="livicon" data-name="calendar" data-size="18" data-c="#00bc8c" data-hc="#00bc8c"
+                               data-loop="true"></i>
+                            <span class="title">Calendrier</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{ path('ListEvent') }}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Calendrier
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="livicon" data-name="Events" data-size="18" data-c="#00bc8c" data-hc="#00bc8c"
+                               data-loop="true"></i>
+                            <span class="title">Events</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{ path('Events') }}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    LISTE DES Events
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('graphepie') }}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Les statistiques à propos des evenements
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="livicon" data-name="doc-portrait" data-c="#5bc0de" data-hc="#5bc0de"
+                               data-size="18" data-loop="true"></i>
+                            <span class="title">Projets</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu collapse">
+                            <li>
+                                <a href="{{ path('Projets') }}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    List
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('Ajouter') }}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Ajout
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('grapheHistogramme') }}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Statistique
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <!-- END SIDEBAR MENU -->
+            </div>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <aside class="right-side">
+        <!-- Main content -->
+        <section class="content-header">
+            <h1>Welcome to Dashboard</h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <a href="#">
+                        <i class="livicon" data-name="home" data-size="16" data-color="#333" data-hovercolor="#333"></i>
+                        Home
+                    </a>
+                </li>
+            </ol>
+        </section>
+        <section class="content">
+            {% block content %}
+                <h1>Hello world</h1>
+            {% endblock %}
+        </section>
+    </aside>
+    <!-- right-side -->
+</div>
+<div class="wrapper row-offcanvas row-offcanvas-left">
+</div>
+
+<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Return to top"
+   data-toggle="tooltip" data-placement="left">
+    <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
+</a>
+<!-- global js -->
+<script src="{{ asset('js/jquery-1.11.1.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+<!--livicons-->
+<script src="{{ asset('vendors/livicons/minified/raphael-min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendors/livicons/minified/livicons-1.4.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/josh.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/metisMenu.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendors/holder-master/holder.js') }}" type="text/javascript"></script>
+<!-- end of global js -->
+<!-- begining of page level js -->
+<script type="text/javascript" src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins/tableexport/tableExport.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins/tableexport/jquery.base64.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins/tableexport/html2canvas.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins/tableexport/jspdf/libs/sprintf.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins/tableexport/jspdf/jspdf.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins/tableexport/jspdf/libs/base64.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendors/wizard/jquery-steps/js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('vendors/wizard/jquery-steps/js/wizard.js') }}"></script>
+<script src="{{ asset('vendors/wizard/jquery-steps/js/jquery.steps.js') }}"></script>
+<script src="{{ asset('vendors/wizard/jquery-steps/js/form_wizard.js') }}"></script>
+<script src="{{ asset('vendors/fullcalendar/fullcalendar.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendors/fullcalendar/calendarcustom.min.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        /* initialize the external events
+         -----------------------------------------------------------------*/
+        function ini_events(ele) {
+            ele.each(function () {
+
+                // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+                // it doesn't need to have a start or end
+                var eventObject = {
+                    title: $.trim($(this).text()) // use the element's text as the event title
+                };
+
+                // store the Event Object in the DOM element so we can get to it later
+                $(this).data('eventObject', eventObject);
+
+                // make the event draggable using jQuery UI
+                $(this).draggable({
+                    zIndex: 1070,
+                    revert: true, // will cause the event to go back to its
+                    revertDuration: 0 //  original position after the drag
+                });
+
+            });
+        }
+
+        ini_events($('#external-events div.external-event'));
+
+        /* initialize the calendar
+         -----------------------------------------------------------------*/
+
+        $('#exp').click(function () {
+            $('#exportTable').toggle();
+        });
+
+        $('#skill').change(function () {
+            var skill = $('#skill').val();
+            alert(skill);
+            $.ajax({
+                type: "POST",
+                url: "{{ path('skillUser') }}",
+                data: 'skill=' + skill,
+                success: function (data, dataType) {
+                    alert("d");
+                },
+
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert('Error : ' + errorThrown);
+                }
+            });
+        });
+
+
+    });
+</script>
+<!-- end of page level js -->
+{% block js %}
+{% endblock %}
+</body>
+</html>

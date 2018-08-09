@@ -1,0 +1,15 @@
+publication_index:
+    path:     /publication
+    defaults: { _controller: SocialProUserBundle:Publication:showall }
+publication_show:
+    path:     /{idPublication}/show
+    defaults: { _controller: SocialProUserBundle:Publication:show }
+publication_new:
+    path:     /new
+    defaults: { _controller: SocialProUserBundle:Publication:new }
+publication_edit:
+    path:     /{idPublication}/edit
+    defaults: { _controller: SocialProUserBundle:Publication:edit }
+publication_delete:
+    path:     /{idPublication}/delete
+    defaults: { _controller: SocialProUserBundle:Publication:delete }

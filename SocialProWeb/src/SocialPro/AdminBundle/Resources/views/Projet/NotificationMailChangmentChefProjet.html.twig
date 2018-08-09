@@ -1,0 +1,6 @@
+Bonjour Mr/Mme {{ projet.chefProjet.nom }} {{ projet.chefProjet.prenom }}, <br><br>
+Le projet ' {{ projet.nom }} ' à eu des modifications. <br>
+La date de début sera le {{ projet.dateDebut|date('d - F - Y') }}. <br>
+La date de fin sera le {{ projet.dateFin|date('d - F - Y') }}. <br>
+Pour plus d'information visitez <a href="http://localhost{{ path('ChefProjets') }}">ce lien</a>. <br> <br>
+Bonne Journée/Soirée.

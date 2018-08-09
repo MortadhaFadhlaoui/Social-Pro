@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="538.0" prefWidth="807.0" styleClass="mainFxmlClass" stylesheets="@../CSS/listquestion.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GroupsYouManageController">
+   <children>
+      <JFXListView fx:id="MyList" layoutX="14.0" layoutY="75.0" onMouseClicked="#getGroupeMange" prefHeight="465.0" prefWidth="807.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0" />
+      <Label layoutX="14.0" layoutY="27.0" text="Groups you manage" wrapText="true">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="add" buttonType="RAISED" layoutX="680.0" layoutY="20.0" onAction="#Addgroup" prefHeight="33.0" prefWidth="120.0" stylesheets="@../CSS/listquestion.css" text="Add group" />
+      <JFXTextField fx:id="search" labelFloat="true" layoutX="538.0" layoutY="24.0" onKeyReleased="#searchgroup" promptText="Search Group" />
+   </children>
+</AnchorPane>

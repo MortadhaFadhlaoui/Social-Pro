@@ -1,0 +1,54 @@
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block content %}
+    <h1>Rechercher des Evenement</h1>
+
+    <form  method="post" class="contact">
+        <div class="form-group">
+            <label for="nom"></label>
+            {{ form_widget(form.nom, {'attr': {'placeholder': '  nom event','class': 'form-control input-lg'}}) }}
+        </div>
+        {{ form_widget(form.rechercher, { 'attr': {'class': 'btn btn-success'} }) }}
+
+        {{ form_end(form) }}
+    </form>
+
+    <div class="row">
+
+        <!-- Testimonial Section -->
+        <div class="text-center">
+            <h3 class="border-primary"><span class="heading_border bg-primary">Les Evenements</span></h3>
+        </div>
+        {% for evenement in evenements %}
+
+            <div class="col-md-4">
+                <div class="author">
+
+                    <p class="text-right">
+                       l'evenements : {{ evenement.nom }}
+                        <br>
+                        <small class="text-right">le : {{ evenement.date|date  }} à {{ evenement.lieu }} </small>
+                    </p>
+                    <p>
+                        <label> Description : <br><br> {{ evenement.description }} </label>
+                        <br><br>
+                        <a href="{{ path('delete_event', {'id':evenement.idEvenement}) }}" ><input type="button"  name="supprimer "value="supprimer" class="btn btn-responsive button-alignment btn-success" /></a>
+                        <br>
+                        <br>
+                        <br>
+                        <a href="{{ path('update_event', {'id':evenement.idEvenement}) }}" ><input type="button"  name="Mise a jour "value="Mise a jour" class="btn btn-responsive button-alignment btn-primary" /></a>
+
+                    </p>
+                </div>
+
+            </div>
+
+        {% endfor %}
+        <!-- Testimonial Section End -->
+    </div>
+
+{% endblock %}
+
+
+
+
+

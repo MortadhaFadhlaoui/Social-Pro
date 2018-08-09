@@ -1,0 +1,61 @@
+
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <!-- Contact form Section Start -->
+            <div class="col-md-6">
+
+                <form  method="post" id="addForm" class="contact">
+                <fieldset>
+                <legend>Ajouter un Evenement</legend>
+                    <div class="form-group">
+                          {{ form_errors(form) }}
+
+
+                        <font color="#40A497" SIZE="3">Nom de l'evenement</font></a>
+                        {{ form_widget(form.nom, {'attr': {'placeholder': 'Nommer votre evénement','class': 'form-control input-lg'}}) }}
+                    </div>
+                    <div class="form-group">
+                    <font color="#40A497" SIZE="3">Date de l'evenement </font></a><br>
+                        {{ form_widget(form.date, {'attr': {'name': 'date', 'id': 'date'}}) }}  &nbsp; <font color="red" SIZE="3">{{ msg }}</font></a>
+
+                    </div>
+                    <div class="form-group">
+                     <font color="#40A497" SIZE="3">lieu del'evenement</font></a>
+
+                        {{ form_widget(form.lieu, {'attr': {'placeholder': 'Le lieu de  votre evénement','class': 'form-control input-lg'}}) }}
+                    </div>
+                    <div class="form-group">
+                    <font color="#40A497" SIZE="3">Confidentialité de l'evenement</font></a>
+
+                        {{ form_widget(form.confidentialite, {'attr': {'placeholder': 'Nommer votre evénement','class': 'form-control input-lg'}}) }}
+                    </div>
+                    <div class="form-group">
+                        <font color="#40A497" SIZE="3">Type  de l'evenement</font></a>
+                        {{ form_widget(form.type, {'attr': {'placeholder': 'Nommer votre evénement','class': 'form-control input-lg'}}) }}
+                    </div>
+                    <div class="form-group">
+                         <font color="#40A497" SIZE="3">Description de l'evenement</font></a>
+                        {{ form_widget(form.description, {'attr': {'placeholder': 'decrivez  votre evénement','class': 'form-control input-lg'}}) }}
+                    </div>
+                    <div>
+                 {{ form_widget(form.OK, { 'attr': {'class': 'btn btn-success'} }) }}
+                    </div>
+                    <div></div>
+
+
+
+                 {{ form_end(form) }}
+                 </fieldset>
+                </form>
+            </div>
+            <!-- //Conatc Form Section End -->
+{% endblock %}
+            {% block js %}
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+    <script src="{{ asset('js/validation.js') }}" type="text/javascript"></script>
+{% endblock %}

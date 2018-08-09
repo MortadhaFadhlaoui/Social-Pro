@@ -1,0 +1,65 @@
+{% extends "SocialProUserBundle::master.html.twig" %}
+{% block  content %}
+
+    <div class="container">
+        <div class="row">
+
+            <!-- Contact form Section Start -->
+            <div class="col-md-6">
+
+                <form  method="post" id="addForm" class="contact">
+                <fieldset>
+                    <div class="box">
+                    <div class="box-icon box-icon2">
+                        <i class="livicon icon1" data-name="doc-portrait" data-size="55" data-loop="true" data-c="#f89a14" data-hc="#f89a14"></i>
+
+                    </div>
+                        <div class="text-center">
+                        <legend>Ajouter une tache </legend>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                          {{ form_errors(form) }}
+
+
+                        <font color="#40A497" SIZE="3">Nom </font></a>
+                        {{ form_widget(form.nom, {'attr': {'placeholder': 'Nommer votre tache','class': 'form-control input-lg'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                     <font color="#40A497" SIZE="3">Description</font></a>
+
+                        {{ form_widget(form.description, {'attr': {'placeholder': 'Donner une Description','class': 'form-control input-lg'}}) }}
+                    </div>
+                    <div class="form-group">
+                    <font color="#40A497" SIZE="3">Complexite </font></a>
+
+                        {{ form_widget(form.complexite, {'attr': {'placeholder': 'Nommer votre complexite','class': 'form-control input-lg'}}) }}
+                    </div>
+                    <div class="form-group">
+                        <font color="#40A497" SIZE="3">Responsable Tache</font></a>
+                        {{ form_widget(form.idUser, {'attr': {'placeholder': 'Nommer votre evénement','class': 'form-control input-lg'}}) }}
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type="submit" value="Ajouter"  class="btn btn-responsive button-alignment btn-success"/>
+                        <a href="{{ path('tache_index') }}"><button type="button" class="btn btn-responsive button-alignment btn-warning" >Retour</button></a>
+                        <br>
+                        </br>
+                    </div>
+                    <br>
+                    </br>
+                    <div></div>
+
+
+
+                 {{ form_end(form) }}
+
+                 </fieldset>
+                </form>
+            </div>
+            <!-- //Conatc Form Section End -->
+{% endblock %}
+
